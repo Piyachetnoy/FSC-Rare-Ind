@@ -46,19 +46,21 @@ if not exists(anno_file) or not exists(im_dir):
     print("Aborting the evaluation")
     exit(-1)
 
-# Set use_gpu to False for CPU mode
-use_gpu = False
-print("===> Using CPU mode.")
+if not torch.cuda.is_available() or args.gpu_id < 0:
+    use_gpu = False
+    print("===> Using CPU mode.")
+else:
+    use_gpu = True
+    os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+    os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu_id)
 
 resnet50_conv = Resnet50FPN()
-# Move the model to CPU
-# resnet50_conv.cpu()
+if use_gpu: resnet50_conv.cuda()
 resnet50_conv.eval()
 
 regressor = CountRegressor(6, pool='mean')
-regressor.load_state_dict(torch.load(args.model_path, map_location=torch.device('mps')))
-# Move the regressor to CPU
-# regressor.cpu()
+regressor.load_state_dict(torch.load(args.model_path))
+if use_gpu: regressor.cuda()
 regressor.eval()
 
 with open(anno_file) as f:
@@ -66,6 +68,7 @@ with open(anno_file) as f:
 
 with open(data_split_file) as f:
     data_split = json.load(f)
+
 
 cnt = 0
 SAE = 0  # sum of absolute errors
@@ -91,16 +94,16 @@ for im_id in pbar:
     sample = Transform(sample)
     image, boxes = sample['image'], sample['boxes']
 
-    # Move image and boxes to CPU
-    # image = image.cpu()
-    # boxes = boxes.cpu()
+    if use_gpu:
+        image = image.cuda()
+        boxes = boxes.cuda()
 
     with torch.no_grad(): features = extract_features(resnet50_conv, image.unsqueeze(0), boxes.unsqueeze(0), MAPS, Scales)
 
     if not args.adapt:
         with torch.no_grad(): output = regressor(features)
     else:
-        features.requires_grad = True
+        features.required_grad = True
         adapted_regressor = copy.deepcopy(regressor)
         adapted_regressor.train()
         optimizer = optim.Adam(adapted_regressor.parameters(), lr=args.learning_rate)
@@ -115,7 +118,7 @@ for im_id in pbar:
             if torch.is_tensor(Loss):
                 Loss.backward()
                 optimizer.step()
-        features.requires_grad = False
+        features.required_grad = False
         output = adapted_regressor(features)
 
     gt_cnt = dots.shape[0]

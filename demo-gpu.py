@@ -26,26 +26,30 @@ parser.add_argument("-m",  "--model_path", type=str, default="./data/pretrainedM
 parser.add_argument("-g",  "--gpu-id", type=int, default=0, help="GPU id. Default 0 for the first GPU. Use -1 for CPU.")
 
 parser.add_argument("-a",  "--adapt", action='store_true', help="If specified, perform test time adaptation")
-parser.add_argument("-gs", "--gradient_steps", type=int, default=100, help="number of gradient steps for the adaptation")
-parser.add_argument("-lr", "--learning_rate", type=float, default=1e-7, help="learning rate for adaptation")
-parser.add_argument("-wm", "--weight_mincount", type=float, default=1e-9, help="weight multiplier for Mincount Loss")
-parser.add_argument("-wp", "--weight_perturbation", type=float, default=1e-4, help="weight multiplier for Perturbation Loss")
+parser.add_argument("-gs", "--gradient_steps", type=int,default=100, help="number of gradient steps for the adaptation")
+parser.add_argument("-lr", "--learning_rate", type=float,default=1e-7, help="learning rate for adaptation")
+parser.add_argument("-wm", "--weight_mincount", type=float,default=1e-9, help="weight multiplier for Mincount Loss")
+parser.add_argument("-wp", "--weight_perturbation", type=float,default=1e-4, help="weight multiplier for Perturbation Loss")
 
 args = parser.parse_args()
 
-# Set device: MPS or CPU
-if not torch.has_mps or args.gpu_id < 0:
-    device = torch.device("cpu")
+if not torch.cuda.is_available() or args.gpu_id < 0:
+    use_gpu = False
     print("===> Using CPU mode.")
 else:
-    device = torch.device("mps")
-    print("===> Using MPS mode.")
+    use_gpu = True
+    os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+    os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu_id)
 
-resnet50_conv = Resnet50FPN().to(device)
-regressor = CountRegressor(6, pool='mean').to(device)
+resnet50_conv = Resnet50FPN()
+regressor = CountRegressor(6, pool='mean')
 
-# Load model weights
-regressor.load_state_dict(torch.load(args.model_path, map_location=device))
+if use_gpu:
+    resnet50_conv.cuda()
+    regressor.cuda()
+    regressor.load_state_dict(torch.load(args.model_path))
+else:
+    regressor.load_state_dict(torch.load(args.model_path, map_location=torch.device('cpu')))
 
 resnet50_conv.eval()
 regressor.eval()
@@ -53,7 +57,7 @@ regressor.eval()
 image_name = os.path.basename(args.input_image)
 image_name = os.path.splitext(image_name)[0]
 
-if args.bbox_file is None:  # If no bounding box file is given, prompt the user for a set of bounding boxes
+if args.bbox_file is None: # if no bounding box file is given, prompt the user for a set of bounding boxes
     out_bbox_file = "{}/{}_box.txt".format(args.output_dir, image_name)
     fout = open(out_bbox_file, "w")
 
@@ -69,7 +73,7 @@ if args.bbox_file is None:  # If no bounding box file is given, prompt the user 
 
     fout.close()
     cv2.destroyWindow("Image")
-    print("Selected bounding boxes are saved to {}".format(out_bbox_file))
+    print("selected bounding boxes are saved to {}".format(out_bbox_file))
 else:
     with open(args.bbox_file, "r") as fin:
         lines = fin.readlines()
@@ -92,17 +96,19 @@ sample = {'image': image, 'lines_boxes': rects1}
 sample = Transform(sample)
 image, boxes = sample['image'], sample['boxes']
 
-image = image.to(device)
-boxes = boxes.to(device)
+
+if use_gpu:
+    image = image.cuda()
+    boxes = boxes.cuda()
 
 with torch.no_grad():
     features = extract_features(resnet50_conv, image.unsqueeze(0), boxes.unsqueeze(0), MAPS, Scales)
 
 if not args.adapt:
-    with torch.no_grad():
-        output = regressor(features)
+    with torch.no_grad(): output = regressor(features)
 else:
-    features.requires_grad = True
+    features.required_grad = True
+    #adapted_regressor = copy.deepcopy(regressor)
     adapted_regressor = regressor
     adapted_regressor.train()
     optimizer = optim.Adam(adapted_regressor.parameters(), lr=args.learning_rate)
@@ -111,24 +117,26 @@ else:
     for step in pbar:
         optimizer.zero_grad()
         output = adapted_regressor(features)
-        lCount = args.weight_mincount * MincountLoss(output, boxes, use_gpu=(device != torch.device("cpu")))
-        lPerturbation = args.weight_perturbation * PerturbationLoss(output, boxes, sigma=8, use_gpu=(device != torch.device("cpu")))
+        lCount = args.weight_mincount * MincountLoss(output, boxes, use_gpu=use_gpu)
+        lPerturbation = args.weight_perturbation * PerturbationLoss(output, boxes, sigma=8, use_gpu=use_gpu)
         Loss = lCount + lPerturbation
-
+        # loss can become zero in some cases, where loss is a 0 valued scalar and not a tensor
+        # So Perform gradient descent only for non zero cases
         if torch.is_tensor(Loss):
             Loss.backward()
             optimizer.step()
 
         pbar.set_description('Adaptation step: {:<3}, loss: {}, predicted-count: {:6.1f}'.format(step, Loss.item(), output.sum().item()))
 
-    features.requires_grad = False
+    features.required_grad = False
     output = adapted_regressor(features)
 
+
 print('===> The predicted count is: {:6.2f}'.format(output.sum().item()))
+# print(output.sum())
+# print(output)
 print(output.gt(0).sum())
 
 rslt_file = "{}/{}_out.png".format(args.output_dir, image_name)
 visualize_output_and_save(image.detach().cpu(), output.detach().cpu(), boxes.cpu(), rslt_file)
 print("===> Visualized output is saved to {}".format(rslt_file))
-
-# python demo_mps.py -i 5.jpg -m logsSave/FamNet.pth
