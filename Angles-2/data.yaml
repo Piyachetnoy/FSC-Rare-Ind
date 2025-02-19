@@ -1,0 +1,12 @@
+names:
+- metal-angles
+nc: 1
+roboflow:
+  license: CC BY 4.0
+  project: angles-nu0a9
+  url: https://universe.roboflow.com/metalpipecounter/angles-nu0a9/dataset/2
+  version: 2
+  workspace: metalpipecounter
+test: ../test/images
+train: Angles-2/train/images
+val: Angles-2/valid/images
