@@ -1,7 +1,7 @@
 import os
 
 # Define the path to the 'img' folder
-img_folder = "data/images_384_VarV2"
+img_folder = "./data/indt-objects-V2"
 
 # Get a sorted list of all files in the 'img' folder
 files = sorted(os.listdir(img_folder))
