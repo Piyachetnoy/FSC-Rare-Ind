@@ -84,7 +84,7 @@ def annotate_images(image_folder):
 
         while True:
             display_image = image.copy()
-
+            cv2.putText(display_image, image_file, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2, cv2.LINE_AA)
             # Draw rectangular box points as small circles
             for point in rect_points:
                 cv2.circle(display_image, point, 5, (255, 255, 0), -1)  # Highlight the clicked points
@@ -96,7 +96,7 @@ def annotate_images(image_folder):
 
             # Draw dots
             for dot in dot_points:
-                cv2.circle(display_image, dot, 5, (0, 0, 255), -1)
+                cv2.circle(display_image, dot, 4, (0, 0, 255), -1)
 
             cv2.imshow("PBAT (Point and Box Annotation Tool)", display_image)
 
@@ -128,8 +128,8 @@ def save_to_json(output_file):
 
 # Example usage
 if __name__ == "__main__":
-    image_folder = "dataTest0/images_384_VarV2"
-    output_file = "annotations000.json"
+    image_folder = "data/indt-objects-V4"
+    output_file = "annotations01.json"
 
     annotate_images(image_folder)
     save_to_json(output_file)
