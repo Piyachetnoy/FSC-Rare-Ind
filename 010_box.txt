@@ -1,1 +1,3 @@
-cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\highgui\src\window_w32.cpp:1261: error: (-27:Null pointer) NULL window: 'Image' in function 'cvDestroyWindow'
+73 141 562 367
+11 287 500 514
+110 345 624 629
