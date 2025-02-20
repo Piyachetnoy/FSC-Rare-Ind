@@ -41,7 +41,7 @@ def rearrange_coordinates(box_coordinates):
     return rearranged_boxes
 
 # Path to the JSON file
-file_path = 'dataTest0/annotation_FSC147_384.json'
+file_path = './data_final/annotations.json'
 
 # Load the JSON data
 data = load_json(file_path)
