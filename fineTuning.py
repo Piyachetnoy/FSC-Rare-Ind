@@ -19,7 +19,7 @@ parser.add_argument("-ts", "--test_split", type=str, default='val', choices=["tr
 parser.add_argument("-ep", "--epochs", type=int, default=500, help="Number of fine-tuning epochs")
 parser.add_argument("-g", "--gpu", type=int, default=0, help="GPU id")
 parser.add_argument("-lr", "--learning_rate", type=float, default=1e-6, help="Fine-tuning learning rate")
-parser.add_argument("-m", "--model_path", type=str, required=True, help="Path to the pre-trained model")
+parser.add_argument("-m", "--model_path", type=str, default="./data-final/FamNet_Save1.pth", help="Path to the pre-trained model")
 args = parser.parse_args()
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
@@ -30,6 +30,7 @@ resnet50_conv = Resnet50FPN().cuda()
 regressor = CountRegressor(6, pool='mean').cuda()
 
 checkpoint = torch.load(args.model_path)
+print(checkpoint.keys())
 regressor.load_state_dict(checkpoint['model_state_dict'])
 optimizer = optim.Adam(regressor.parameters(), lr=args.learning_rate)
 
