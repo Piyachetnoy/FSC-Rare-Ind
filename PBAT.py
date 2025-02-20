@@ -129,7 +129,7 @@ def save_to_json(output_file):
 # Example usage
 if __name__ == "__main__":
     image_folder = "data/indt-objects-V4"
-    output_file = "annotations01.json"
+    output_file = "annotations10.json"
 
     annotate_images(image_folder)
     save_to_json(output_file)

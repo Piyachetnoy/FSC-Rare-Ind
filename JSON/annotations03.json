@@ -1,0 +1,1748 @@
+{
+    "599.jpg": {
+        "H": 640,
+        "W": 640,
+        "box_examples_coordinates": [
+            [
+                [
+                    176,
+                    134
+                ],
+                [
+                    268,
+                    134
+                ],
+                [
+                    268,
+                    38
+                ],
+                [
+                    176,
+                    38
+                ]
+            ],
+            [
+                [
+                    273,
+                    220
+                ],
+                [
+                    397,
+                    220
+                ],
+                [
+                    397,
+                    282
+                ],
+                [
+                    273,
+                    282
+                ]
+            ],
+            [
+                [
+                    410,
+                    395
+                ],
+                [
+                    576,
+                    395
+                ],
+                [
+                    576,
+                    477
+                ],
+                [
+                    410,
+                    477
+                ]
+            ]
+        ],
+        "box_examples_path": [
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/599_0.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/599_1.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/599_2.jpg"
+        ],
+        "density_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_adaptive_384_VarV2/599.npy",
+        "density_path_fixed": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_fixed/599.npy",
+        "img_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/images_384_VarV2/599.jpg",
+        "points": [
+            [
+                182,
+                82
+            ],
+            [
+                206,
+                85
+            ],
+            [
+                232,
+                91
+            ],
+            [
+                248,
+                91
+            ],
+            [
+                333,
+                155
+            ],
+            [
+                335,
+                140
+            ],
+            [
+                341,
+                124
+            ],
+            [
+                344,
+                109
+            ],
+            [
+                484,
+                173
+            ],
+            [
+                484,
+                160
+            ],
+            [
+                490,
+                142
+            ],
+            [
+                490,
+                126
+            ],
+            [
+                613,
+                202
+            ],
+            [
+                608,
+                193
+            ],
+            [
+                612,
+                180
+            ],
+            [
+                603,
+                166
+            ],
+            [
+                466,
+                277
+            ],
+            [
+                466,
+                289
+            ],
+            [
+                466,
+                303
+            ],
+            [
+                464,
+                320
+            ],
+            [
+                323,
+                315
+            ],
+            [
+                326,
+                302
+            ],
+            [
+                329,
+                288
+            ],
+            [
+                328,
+                267
+            ],
+            [
+                152,
+                294
+            ],
+            [
+                162,
+                276
+            ],
+            [
+                166,
+                264
+            ],
+            [
+                177,
+                244
+            ],
+            [
+                318,
+                382
+            ],
+            [
+                310,
+                402
+            ],
+            [
+                307,
+                420
+            ],
+            [
+                295,
+                439
+            ],
+            [
+                483,
+                462
+            ],
+            [
+                486,
+                440
+            ],
+            [
+                491,
+                422
+            ],
+            [
+                495,
+                406
+            ],
+            [
+                524,
+                594
+            ],
+            [
+                532,
+                618
+            ],
+            [
+                308,
+                568
+            ],
+            [
+                314,
+                597
+            ],
+            [
+                307,
+                618
+            ],
+            [
+                310,
+                637
+            ],
+            [
+                59,
+                631
+            ],
+            [
+                60,
+                609
+            ],
+            [
+                70,
+                578
+            ],
+            [
+                77,
+                561
+            ],
+            [
+                129,
+                433
+            ],
+            [
+                141,
+                414
+            ],
+            [
+                147,
+                393
+            ],
+            [
+                153,
+                370
+            ],
+            [
+                6,
+                105
+            ],
+            [
+                8,
+                90
+            ],
+            [
+                12,
+                73
+            ],
+            [
+                21,
+                54
+            ]
+        ],
+        "r": [
+            30,
+            30
+        ],
+        "ratio_h": 6.0,
+        "ratio_w": 6.0
+    },
+    "228.jpg": {
+        "H": 640,
+        "W": 640,
+        "box_examples_coordinates": [
+            [
+                [
+                    252,
+                    612
+                ],
+                [
+                    513,
+                    612
+                ],
+                [
+                    513,
+                    499
+                ],
+                [
+                    252,
+                    499
+                ]
+            ]
+        ],
+        "box_examples_path": [
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/228_0.jpg"
+        ],
+        "density_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_adaptive_384_VarV2/228.npy",
+        "density_path_fixed": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_fixed/228.npy",
+        "img_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/images_384_VarV2/228.jpg",
+        "points": [
+            [
+                392,
+                555
+            ]
+        ],
+        "r": [
+            30,
+            30
+        ],
+        "ratio_h": 6.0,
+        "ratio_w": 6.0
+    },
+    "214.jpg": {
+        "H": 640,
+        "W": 640,
+        "box_examples_coordinates": [
+            [
+                [
+                    79,
+                    442
+                ],
+                [
+                    171,
+                    442
+                ],
+                [
+                    171,
+                    334
+                ],
+                [
+                    79,
+                    334
+                ]
+            ],
+            [
+                [
+                    368,
+                    507
+                ],
+                [
+                    269,
+                    507
+                ],
+                [
+                    269,
+                    391
+                ],
+                [
+                    368,
+                    391
+                ]
+            ],
+            [
+                [
+                    279,
+                    255
+                ],
+                [
+                    218,
+                    255
+                ],
+                [
+                    218,
+                    176
+                ],
+                [
+                    279,
+                    176
+                ]
+            ]
+        ],
+        "box_examples_path": [
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/214_0.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/214_1.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/214_2.jpg"
+        ],
+        "density_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_adaptive_384_VarV2/214.npy",
+        "density_path_fixed": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_fixed/214.npy",
+        "img_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/images_384_VarV2/214.jpg",
+        "points": [
+            [
+                124,
+                424
+            ],
+            [
+                317,
+                494
+            ],
+            [
+                412,
+                452
+            ],
+            [
+                477,
+                412
+            ],
+            [
+                557,
+                306
+            ],
+            [
+                253,
+                244
+            ],
+            [
+                145,
+                147
+            ]
+        ],
+        "r": [
+            30,
+            30
+        ],
+        "ratio_h": 6.0,
+        "ratio_w": 6.0
+    },
+    "572.jpg": {
+        "H": 640,
+        "W": 640,
+        "box_examples_coordinates": [
+            [
+                [
+                    291,
+                    421
+                ],
+                [
+                    528,
+                    421
+                ],
+                [
+                    528,
+                    238
+                ],
+                [
+                    291,
+                    238
+                ]
+            ],
+            [
+                [
+                    280,
+                    547
+                ],
+                [
+                    518,
+                    547
+                ],
+                [
+                    518,
+                    377
+                ],
+                [
+                    280,
+                    377
+                ]
+            ],
+            [
+                [
+                    276,
+                    485
+                ],
+                [
+                    43,
+                    485
+                ],
+                [
+                    43,
+                    308
+                ],
+                [
+                    276,
+                    308
+                ]
+            ]
+        ],
+        "box_examples_path": [
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/572_0.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/572_1.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/572_2.jpg"
+        ],
+        "density_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_adaptive_384_VarV2/572.npy",
+        "density_path_fixed": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_fixed/572.npy",
+        "img_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/images_384_VarV2/572.jpg",
+        "points": [
+            [
+                157,
+                243
+            ],
+            [
+                161,
+                286
+            ],
+            [
+                158,
+                334
+            ],
+            [
+                156,
+                373
+            ],
+            [
+                407,
+                264
+            ],
+            [
+                408,
+                310
+            ],
+            [
+                408,
+                355
+            ],
+            [
+                402,
+                403
+            ],
+            [
+                624,
+                278
+            ],
+            [
+                632,
+                322
+            ],
+            [
+                627,
+                358
+            ],
+            [
+                625,
+                404
+            ],
+            [
+                94,
+                503
+            ],
+            [
+                97,
+                535
+            ],
+            [
+                96,
+                558
+            ],
+            [
+                100,
+                587
+            ]
+        ],
+        "r": [
+            30,
+            30
+        ],
+        "ratio_h": 6.0,
+        "ratio_w": 6.0
+    },
+    "566.jpg": {
+        "H": 640,
+        "W": 640,
+        "box_examples_coordinates": [
+            [
+                [
+                    92,
+                    217
+                ],
+                [
+                    460,
+                    217
+                ],
+                [
+                    460,
+                    363
+                ],
+                [
+                    92,
+                    363
+                ]
+            ],
+            [
+                [
+                    600,
+                    279
+                ],
+                [
+                    264,
+                    279
+                ],
+                [
+                    264,
+                    139
+                ],
+                [
+                    600,
+                    139
+                ]
+            ],
+            [
+                [
+                    36,
+                    607
+                ],
+                [
+                    298,
+                    607
+                ],
+                [
+                    298,
+                    519
+                ],
+                [
+                    36,
+                    519
+                ]
+            ]
+        ],
+        "box_examples_path": [
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/566_0.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/566_1.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/566_2.jpg"
+        ],
+        "density_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_adaptive_384_VarV2/566.npy",
+        "density_path_fixed": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_fixed/566.npy",
+        "img_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/images_384_VarV2/566.jpg",
+        "points": [
+            [
+                93,
+                296
+            ],
+            [
+                88,
+                259
+            ],
+            [
+                80,
+                193
+            ],
+            [
+                62,
+                127
+            ],
+            [
+                51,
+                97
+            ],
+            [
+                36,
+                63
+            ],
+            [
+                27,
+                31
+            ],
+            [
+                282,
+                341
+            ],
+            [
+                280,
+                282
+            ],
+            [
+                498,
+                59
+            ],
+            [
+                501,
+                83
+            ],
+            [
+                488,
+                117
+            ],
+            [
+                469,
+                144
+            ],
+            [
+                450,
+                216
+            ],
+            [
+                470,
+                259
+            ],
+            [
+                456,
+                299
+            ],
+            [
+                190,
+                453
+            ],
+            [
+                175,
+                466
+            ],
+            [
+                171,
+                488
+            ],
+            [
+                158,
+                505
+            ],
+            [
+                171,
+                537
+            ],
+            [
+                188,
+                563
+            ],
+            [
+                181,
+                586
+            ],
+            [
+                449,
+                560
+            ],
+            [
+                457,
+                542
+            ],
+            [
+                478,
+                522
+            ],
+            [
+                486,
+                484
+            ],
+            [
+                488,
+                467
+            ],
+            [
+                486,
+                449
+            ],
+            [
+                493,
+                434
+            ],
+            [
+                568,
+                558
+            ],
+            [
+                559,
+                591
+            ]
+        ],
+        "r": [
+            30,
+            30
+        ],
+        "ratio_h": 6.0,
+        "ratio_w": 6.0
+    },
+    "200.jpg": {
+        "H": 640,
+        "W": 640,
+        "box_examples_coordinates": [
+            [
+                [
+                    51,
+                    336
+                ],
+                [
+                    560,
+                    336
+                ],
+                [
+                    560,
+                    611
+                ],
+                [
+                    51,
+                    611
+                ]
+            ],
+            [
+                [
+                    585,
+                    50
+                ],
+                [
+                    76,
+                    50
+                ],
+                [
+                    76,
+                    320
+                ],
+                [
+                    585,
+                    320
+                ]
+            ],
+            [
+                [
+                    48,
+                    276
+                ],
+                [
+                    560,
+                    276
+                ],
+                [
+                    560,
+                    17
+                ],
+                [
+                    48,
+                    17
+                ]
+            ]
+        ],
+        "box_examples_path": [
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/200_0.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/200_1.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/200_2.jpg"
+        ],
+        "density_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_adaptive_384_VarV2/200.npy",
+        "density_path_fixed": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_fixed/200.npy",
+        "img_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/images_384_VarV2/200.jpg",
+        "points": [
+            [
+                58,
+                142
+            ],
+            [
+                576,
+                184
+            ],
+            [
+                87,
+                307
+            ],
+            [
+                572,
+                472
+            ],
+            [
+                61,
+                473
+            ]
+        ],
+        "r": [
+            30,
+            30
+        ],
+        "ratio_h": 6.0,
+        "ratio_w": 6.0
+    },
+    "016.jpg": {
+        "H": 640,
+        "W": 640,
+        "box_examples_coordinates": [
+            [
+                [
+                    22,
+                    85
+                ],
+                [
+                    427,
+                    85
+                ],
+                [
+                    427,
+                    602
+                ],
+                [
+                    22,
+                    602
+                ]
+            ],
+            [
+                [
+                    252,
+                    534
+                ],
+                [
+                    631,
+                    534
+                ],
+                [
+                    631,
+                    7
+                ],
+                [
+                    252,
+                    7
+                ]
+            ]
+        ],
+        "box_examples_path": [
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/016_0.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/016_1.jpg"
+        ],
+        "density_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_adaptive_384_VarV2/016.npy",
+        "density_path_fixed": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_fixed/016.npy",
+        "img_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/images_384_VarV2/016.jpg",
+        "points": [
+            [
+                234,
+                331
+            ],
+            [
+                441,
+                274
+            ],
+            [
+                636,
+                319
+            ],
+            [
+                12,
+                280
+            ]
+        ],
+        "r": [
+            30,
+            30
+        ],
+        "ratio_h": 6.0,
+        "ratio_w": 6.0
+    },
+    "002.jpg": {
+        "H": 640,
+        "W": 640,
+        "box_examples_coordinates": [
+            [
+                [
+                    369,
+                    10
+                ],
+                [
+                    635,
+                    10
+                ],
+                [
+                    635,
+                    610
+                ],
+                [
+                    369,
+                    610
+                ]
+            ],
+            [
+                [
+                    403,
+                    626
+                ],
+                [
+                    144,
+                    626
+                ],
+                [
+                    144,
+                    32
+                ],
+                [
+                    403,
+                    32
+                ]
+            ],
+            [
+                [
+                    276,
+                    583
+                ],
+                [
+                    21,
+                    583
+                ],
+                [
+                    21,
+                    1
+                ],
+                [
+                    276,
+                    1
+                ]
+            ]
+        ],
+        "box_examples_path": [
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/002_0.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/002_1.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/002_2.jpg"
+        ],
+        "density_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_adaptive_384_VarV2/002.npy",
+        "density_path_fixed": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_fixed/002.npy",
+        "img_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/images_384_VarV2/002.jpg",
+        "points": [
+            [
+                270,
+                289
+            ],
+            [
+                149,
+                285
+            ],
+            [
+                413,
+                290
+            ],
+            [
+                501,
+                283
+            ]
+        ],
+        "r": [
+            30,
+            30
+        ],
+        "ratio_h": 6.0,
+        "ratio_w": 6.0
+    },
+    "003.jpg": {
+        "H": 640,
+        "W": 640,
+        "box_examples_coordinates": [
+            [
+                [
+                    630,
+                    539
+                ],
+                [
+                    35,
+                    539
+                ],
+                [
+                    35,
+                    267
+                ],
+                [
+                    630,
+                    267
+                ]
+            ],
+            [
+                [
+                    19,
+                    5
+                ],
+                [
+                    604,
+                    5
+                ],
+                [
+                    604,
+                    268
+                ],
+                [
+                    19,
+                    268
+                ]
+            ],
+            [
+                [
+                    5,
+                    140
+                ],
+                [
+                    567,
+                    140
+                ],
+                [
+                    567,
+                    395
+                ],
+                [
+                    5,
+                    395
+                ]
+            ]
+        ],
+        "box_examples_path": [
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/003_0.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/003_1.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/003_2.jpg"
+        ],
+        "density_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_adaptive_384_VarV2/003.npy",
+        "density_path_fixed": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_fixed/003.npy",
+        "img_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/images_384_VarV2/003.jpg",
+        "points": [
+            [
+                312,
+                129
+            ],
+            [
+                271,
+                264
+            ],
+            [
+                339,
+                408
+            ],
+            [
+                294,
+                523
+            ]
+        ],
+        "r": [
+            30,
+            30
+        ],
+        "ratio_h": 6.0,
+        "ratio_w": 6.0
+    },
+    "017.jpg": {
+        "H": 640,
+        "W": 640,
+        "box_examples_coordinates": [
+            [
+                [
+                    218,
+                    6
+                ],
+                [
+                    635,
+                    6
+                ],
+                [
+                    635,
+                    537
+                ],
+                [
+                    218,
+                    537
+                ]
+            ],
+            [
+                [
+                    6,
+                    93
+                ],
+                [
+                    420,
+                    93
+                ],
+                [
+                    420,
+                    623
+                ],
+                [
+                    6,
+                    623
+                ]
+            ]
+        ],
+        "box_examples_path": [
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/017_0.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/017_1.jpg"
+        ],
+        "density_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_adaptive_384_VarV2/017.npy",
+        "density_path_fixed": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_fixed/017.npy",
+        "img_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/images_384_VarV2/017.jpg",
+        "points": [
+            [
+                436,
+                240
+            ],
+            [
+                208,
+                360
+            ],
+            [
+                3,
+                267
+            ],
+            [
+                632,
+                336
+            ]
+        ],
+        "r": [
+            30,
+            30
+        ],
+        "ratio_h": 6.0,
+        "ratio_w": 6.0
+    },
+    "567.jpg": {
+        "H": 640,
+        "W": 640,
+        "box_examples_coordinates": [
+            [
+                [
+                    254,
+                    546
+                ],
+                [
+                    452,
+                    546
+                ],
+                [
+                    452,
+                    413
+                ],
+                [
+                    254,
+                    413
+                ]
+            ],
+            [
+                [
+                    224,
+                    340
+                ],
+                [
+                    442,
+                    340
+                ],
+                [
+                    442,
+                    172
+                ],
+                [
+                    224,
+                    172
+                ]
+            ],
+            [
+                [
+                    218,
+                    374
+                ],
+                [
+                    24,
+                    374
+                ],
+                [
+                    24,
+                    217
+                ],
+                [
+                    218,
+                    217
+                ]
+            ]
+        ],
+        "box_examples_path": [
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/567_0.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/567_1.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/567_2.jpg"
+        ],
+        "density_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_adaptive_384_VarV2/567.npy",
+        "density_path_fixed": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_fixed/567.npy",
+        "img_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/images_384_VarV2/567.jpg",
+        "points": [
+            [
+                99,
+                195
+            ],
+            [
+                99,
+                232
+            ],
+            [
+                102,
+                275
+            ],
+            [
+                108,
+                308
+            ],
+            [
+                104,
+                338
+            ],
+            [
+                111,
+                375
+            ],
+            [
+                118,
+                403
+            ],
+            [
+                122,
+                437
+            ],
+            [
+                314,
+                191
+            ],
+            [
+                328,
+                233
+            ],
+            [
+                331,
+                269
+            ],
+            [
+                332,
+                302
+            ],
+            [
+                335,
+                335
+            ],
+            [
+                336,
+                357
+            ],
+            [
+                342,
+                390
+            ],
+            [
+                342,
+                424
+            ],
+            [
+                599,
+                166
+            ],
+            [
+                581,
+                211
+            ],
+            [
+                581,
+                245
+            ],
+            [
+                573,
+                278
+            ],
+            [
+                576,
+                305
+            ],
+            [
+                570,
+                342
+            ],
+            [
+                570,
+                368
+            ],
+            [
+                571,
+                413
+            ]
+        ],
+        "r": [
+            30,
+            30
+        ],
+        "ratio_h": 6.0,
+        "ratio_w": 6.0
+    },
+    "201.jpg": {
+        "H": 640,
+        "W": 640,
+        "box_examples_coordinates": [
+            [
+                [
+                    601,
+                    624
+                ],
+                [
+                    81,
+                    624
+                ],
+                [
+                    81,
+                    349
+                ],
+                [
+                    601,
+                    349
+                ]
+            ],
+            [
+                [
+                    48,
+                    315
+                ],
+                [
+                    570,
+                    315
+                ],
+                [
+                    570,
+                    36
+                ],
+                [
+                    48,
+                    36
+                ]
+            ],
+            [
+                [
+                    593,
+                    28
+                ],
+                [
+                    81,
+                    28
+                ],
+                [
+                    81,
+                    307
+                ],
+                [
+                    593,
+                    307
+                ]
+            ]
+        ],
+        "box_examples_path": [
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/201_0.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/201_1.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/201_2.jpg"
+        ],
+        "density_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_adaptive_384_VarV2/201.npy",
+        "density_path_fixed": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_fixed/201.npy",
+        "img_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/images_384_VarV2/201.jpg",
+        "points": [
+            [
+                576,
+                167
+            ],
+            [
+                66,
+                167
+            ],
+            [
+                554,
+                329
+            ],
+            [
+                66,
+                454
+            ],
+            [
+                585,
+                495
+            ]
+        ],
+        "r": [
+            30,
+            30
+        ],
+        "ratio_h": 6.0,
+        "ratio_w": 6.0
+    },
+    "215.jpg": {
+        "H": 640,
+        "W": 640,
+        "box_examples_coordinates": [
+            [
+                [
+                    161,
+                    519
+                ],
+                [
+                    100,
+                    519
+                ],
+                [
+                    100,
+                    468
+                ],
+                [
+                    161,
+                    468
+                ]
+            ],
+            [
+                [
+                    502,
+                    364
+                ],
+                [
+                    396,
+                    364
+                ],
+                [
+                    396,
+                    270
+                ],
+                [
+                    502,
+                    270
+                ]
+            ],
+            [
+                [
+                    248,
+                    61
+                ],
+                [
+                    352,
+                    61
+                ],
+                [
+                    352,
+                    129
+                ],
+                [
+                    248,
+                    129
+                ]
+            ]
+        ],
+        "box_examples_path": [
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/215_0.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/215_1.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/215_2.jpg"
+        ],
+        "density_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_adaptive_384_VarV2/215.npy",
+        "density_path_fixed": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_fixed/215.npy",
+        "img_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/images_384_VarV2/215.jpg",
+        "points": [
+            [
+                487,
+                322
+            ],
+            [
+                451,
+                227
+            ],
+            [
+                412,
+                166
+            ],
+            [
+                312,
+                89
+            ],
+            [
+                243,
+                387
+            ],
+            [
+                430,
+                517
+            ],
+            [
+                152,
+                496
+            ]
+        ],
+        "r": [
+            30,
+            30
+        ],
+        "ratio_h": 6.0,
+        "ratio_w": 6.0
+    },
+    "573.jpg": {
+        "H": 640,
+        "W": 640,
+        "box_examples_coordinates": [
+            [
+                [
+                    267,
+                    547
+                ],
+                [
+                    496,
+                    547
+                ],
+                [
+                    496,
+                    339
+                ],
+                [
+                    267,
+                    339
+                ]
+            ],
+            [
+                [
+                    255,
+                    419
+                ],
+                [
+                    488,
+                    419
+                ],
+                [
+                    488,
+                    212
+                ],
+                [
+                    255,
+                    212
+                ]
+            ],
+            [
+                [
+                    10,
+                    457
+                ],
+                [
+                    243,
+                    457
+                ],
+                [
+                    243,
+                    263
+                ],
+                [
+                    10,
+                    263
+                ]
+            ]
+        ],
+        "box_examples_path": [
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/573_0.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/573_1.jpg",
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/573_2.jpg"
+        ],
+        "density_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_adaptive_384_VarV2/573.npy",
+        "density_path_fixed": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_fixed/573.npy",
+        "img_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/images_384_VarV2/573.jpg",
+        "points": [
+            [
+                357,
+                232
+            ],
+            [
+                365,
+                285
+            ],
+            [
+                369,
+                323
+            ],
+            [
+                369,
+                360
+            ],
+            [
+                585,
+                299
+            ],
+            [
+                584,
+                260
+            ],
+            [
+                579,
+                219
+            ],
+            [
+                577,
+                178
+            ],
+            [
+                107,
+                285
+            ],
+            [
+                111,
+                336
+            ],
+            [
+                118,
+                386
+            ],
+            [
+                124,
+                419
+            ]
+        ],
+        "r": [
+            30,
+            30
+        ],
+        "ratio_h": 6.0,
+        "ratio_w": 6.0
+    },
+    "229.jpg": {
+        "H": 640,
+        "W": 640,
+        "box_examples_coordinates": [
+            [
+                [
+                    25,
+                    255
+                ],
+                [
+                    139,
+                    255
+                ],
+                [
+                    139,
+                    513
+                ],
+                [
+                    25,
+                    513
+                ]
+            ]
+        ],
+        "box_examples_path": [
+            "/nfs/bigneuron/viresh/FSC_NewDataOnly/box_examples/229_0.jpg"
+        ],
+        "density_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_adaptive_384_VarV2/229.npy",
+        "density_path_fixed": "/nfs/bigneuron/viresh/FSC_NewDataOnly/gt_density_map_fixed/229.npy",
+        "img_path": "/nfs/bigneuron/viresh/FSC_NewDataOnly/images_384_VarV2/229.jpg",
+        "points": [
+            [
+                82,
+                376
+            ]
+        ],
+        "r": [
+            30,
+            30
+        ],
+        "ratio_h": 6.0,
+        "ratio_w": 6.0
+    }
+}
