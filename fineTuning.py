@@ -47,7 +47,7 @@ criterion = nn.MSELoss().cuda()
 
 # Load your custom model
 famnet = FamNet()
-famnet.load_state_dict(torch.load("./data-final/FamNet_Save1.pth"))  # Load pretrained weights
+famnet.load_state_dict(torch.load("./data-final/FamNet_Save1.pth"), strict=False)  # Load pretrained weights
 famnet.cuda()
 famnet.train()  # Set to training mode
 
