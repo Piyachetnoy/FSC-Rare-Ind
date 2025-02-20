@@ -23,24 +23,6 @@ class Resnet50FPN(nn.Module):
         feat['map4'] = feat_map4
         return feat
 
-class FamNet(nn.Module):
-    def __init__(self, input_dim, output_dim):
-        super(FamNet, self).__init__()
-        
-        self.regressor = nn.Sequential(
-            nn.Linear(input_dim, 128),  # Matches 'regressor.0.weight' and 'regressor.0.bias'
-            nn.ReLU(),
-            nn.Linear(128, 64),        # Matches 'regressor.3.weight' and 'regressor.3.bias'
-            nn.ReLU(),
-            nn.Linear(64, 32),         # Matches 'regressor.6.weight' and 'regressor.6.bias'
-            nn.ReLU(),
-            nn.Linear(32, 16),         # Matches 'regressor.9.weight' and 'regressor.9.bias'
-            nn.ReLU(),
-            nn.Linear(16, output_dim)  # Matches 'regressor.11.weight' and 'regressor.11.bias'
-        )
-    def forward(self, x):
-        return self.regressor(x)
-
 class CountRegressor(nn.Module):
     def __init__(self, input_channels,pool='mean'):
         super(CountRegressor, self).__init__()
