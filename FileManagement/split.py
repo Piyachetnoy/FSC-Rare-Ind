@@ -3,18 +3,18 @@ import random
 import json
 
 # Define the path to the image folder
-img_folder = "dataTest0/images_384_VarV2"
+img_folder = "./data-final/indt-objects-V4"
 
-# Get a list of all image file names in the folder
-files = os.listdir(img_folder)
+# Get a sorted list of all JPG files (ignoring hidden/system files)
+files = sorted([f for f in os.listdir(img_folder) if f.lower().endswith('.jpg')])
 
 # Shuffle the file list randomly
 random.shuffle(files)
 
 # Calculate the split sizes
 total_files = len(files)
-train_size = int(total_files * 0.75)
-val_size = int(total_files * 0.15)
+train_size = int(total_files * 0.70)
+val_size = int(total_files * 0.20)
 test_size = total_files - train_size - val_size
 
 # Split the files into train, val, and test sets
@@ -30,7 +30,7 @@ data_splits = {
 }
 
 # Save the splits to a JSON file
-output_file = "dataTest0/Train_Test_Val_FSC_147.json"
+output_file = "./data-final/Train_Test_Val.json"
 with open(output_file, "w") as json_file:
     json.dump(data_splits, json_file, indent=4)
 

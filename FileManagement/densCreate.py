@@ -50,4 +50,4 @@ def main(json_filepath, save_directory):
 
 # Replace 'your_json_file_path.json' with the actual path to your JSON file
 # Replace 'your_save_directory' with the directory path where you want to save .npy files
-main('dataTest0/annotation_FSC147_384.json', 'dataTest0/gt_density_map_adaptive_384_VarV2')
+main('./data-final/annotations.json', './data-final/density_map_adaptive_V1')
