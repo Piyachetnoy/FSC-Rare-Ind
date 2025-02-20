@@ -32,8 +32,8 @@ args = parser.parse_args()
 
 
 data_path = args.data_path
-anno_file = data_path + 'data-final'
-data_split_file = data_path + 'annotations.json'
+anno_file = data_path + 'annotations.json'
+data_split_file = data_path + 'Train_Test_Val.json'
 im_dir = data_path + 'indt-objects-V4'
 gt_dir = data_path + 'density_map_adaptive_V1'
 
