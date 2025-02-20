@@ -24,24 +24,22 @@ class Resnet50FPN(nn.Module):
         return feat
 
 class FamNet(nn.Module):
-    def __init__(self):
+    def __init__(self, input_dim, output_dim):
         super(FamNet, self).__init__()
-        self.resnet = torchvision.models.resnet50(pretrained=False)  # Do not use pre-trained weights
-        children = list(self.resnet.children())
-        self.conv1 = nn.Sequential(*children[:4])
-        self.conv2 = children[4]
-        self.conv3 = children[5]
-        self.conv4 = children[6]
-
-    def forward(self, im_data):
-        feat = OrderedDict()
-        feat_map = self.conv1(im_data)
-        feat_map = self.conv2(feat_map)
-        feat_map3 = self.conv3(feat_map)
-        feat_map4 = self.conv4(feat_map3)
-        feat['map3'] = feat_map3
-        feat['map4'] = feat_map4
-        return feat
+        
+        self.regressor = nn.Sequential(
+            nn.Linear(input_dim, 128),  # Matches 'regressor.0.weight' and 'regressor.0.bias'
+            nn.ReLU(),
+            nn.Linear(128, 64),        # Matches 'regressor.3.weight' and 'regressor.3.bias'
+            nn.ReLU(),
+            nn.Linear(64, 32),         # Matches 'regressor.6.weight' and 'regressor.6.bias'
+            nn.ReLU(),
+            nn.Linear(32, 16),         # Matches 'regressor.9.weight' and 'regressor.9.bias'
+            nn.ReLU(),
+            nn.Linear(16, output_dim)  # Matches 'regressor.11.weight' and 'regressor.11.bias'
+        )
+    def forward(self, x):
+        return self.regressor(x)
 
 class CountRegressor(nn.Module):
     def __init__(self, input_channels,pool='mean'):
