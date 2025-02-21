@@ -3,10 +3,10 @@ import random
 import json
 
 # Define the path to the image folder
-img_folder = "./data-final/indt-objects-V4"
+img_folder = "./data-V2/indt-objects-V5"
 
 # Get a sorted list of all JPG files (ignoring hidden/system files)
-files = sorted([f for f in os.listdir(img_folder) if f.lower().endswith('.jpg')])
+files = sorted([f for f in os.listdir(img_folder) if f.lower().endswith('.jpg') and not f.lower().startswith('.')])
 
 # Shuffle the file list randomly
 random.shuffle(files)
@@ -30,7 +30,7 @@ data_splits = {
 }
 
 # Save the splits to a JSON file
-output_file = "./data-final/Train_Test_Val.json"
+output_file = "./data-V2/Train_Test_Val.json"
 with open(output_file, "w") as json_file:
     json.dump(data_splits, json_file, indent=4)
 

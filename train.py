@@ -27,14 +27,14 @@ parser.add_argument("-o", "--output_dir", type=str,default="./logsSave", help="/
 parser.add_argument("-ts", "--test-split", type=str, default='val', choices=["train", "test", "val"], help="what data split to evaluate on on")
 parser.add_argument("-ep", "--epochs", type=int,default=1500, help="number of training epochs")
 parser.add_argument("-g", "--gpu", type=int,default=0, help="GPU id")
-parser.add_argument("-lr", "--learning-rate", type=float,default=1e-5, help="learning rate")
+parser.add_argument("-lr", "--learning-rate", type=float,default=1e-6, help="learning rate")
 args = parser.parse_args()
 
 
 data_path = args.data_path
 anno_file = data_path + 'annotations.json'
 data_split_file = data_path + 'Train_Test_Val.json'
-im_dir = data_path + 'indt-objects-V4'
+im_dir = data_path + 'indt-objects-V5'
 gt_dir = data_path + 'density_map_adaptive_V1'
 
 if not exists(args.output_dir):
@@ -175,14 +175,14 @@ for epoch in range(0,args.epochs):
     regressor.eval()
     val_mae,val_rmse = eval()
     stats.append((train_loss, train_mae, train_rmse, val_mae, val_rmse))
-    stats_file = join(args.output_dir, "stats" +  ".txt")
+    stats_file = join(args.output_dir, "stats0221" +  ".txt")
     with open(stats_file, 'w') as f:
         for s in stats:
             f.write("%s\n" % ','.join([str(x) for x in s]))    
     if best_mae >= val_mae:
         best_mae = val_mae
         best_rmse = val_rmse
-        model_name = args.output_dir + '/' + "FamNet.pth"
+        model_name = args.output_dir + '/' + "FamNet0221.pth"
         torch.save(regressor.state_dict(), model_name)
 
     print("Epoch {}, Avg. Epoch Loss: {} Train MAE: {} Train RMSE: {} Val MAE: {} Val RMSE: {} Best Val MAE: {} Best Val RMSE: {} ".format(

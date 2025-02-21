@@ -25,8 +25,8 @@ import torch.optim as optim
 
 
 parser = argparse.ArgumentParser(description="Few Shot Counting Evaluation code")
-parser.add_argument("-dp", "--data_path", type=str, default='./data/', help="Path to the FSC147 dataset")
-parser.add_argument("-ts", "--test_split", type=str, default='val', choices=["val_PartA","val_PartB","test_PartA","test_PartB","test", "val"], help="what data split to evaluate on")
+parser.add_argument("-dp", "--data_path", type=str, default='./data-V2/', help="Path to the FSC147 dataset")
+parser.add_argument("-ts", "--test_split", type=str, default='test', choices=["val_PartA","val_PartB","test_PartA","test_PartB","test", "val"], help="what data split to evaluate on")
 parser.add_argument("-m",  "--model_path", type=str, default="./data/pretrainedModels/FamNet_Save1.pth", help="path to trained model")
 parser.add_argument("-a",  "--adapt", action='store_true', help="If specified, perform test time adaptation")
 parser.add_argument("-gs", "--gradient_steps", type=int,default=100, help="number of gradient steps for the adaptation")
@@ -37,9 +37,9 @@ parser.add_argument("-g",  "--gpu-id", type=int, default=0, help="GPU id. Defaul
 args = parser.parse_args()
 
 data_path = args.data_path
-anno_file = data_path + 'annotation_FSC147_384.json'
-data_split_file = data_path + 'Train_Test_Val_FSC_147.json'
-im_dir = data_path + 'images_384_VarV2'
+anno_file = data_path + 'annotations.json'
+data_split_file = data_path + 'Train_Test_Val.json'
+im_dir = data_path + 'indt-objects-V5'
 
 if not exists(anno_file) or not exists(im_dir):
     print("Make sure you set up the --data-path correctly.")
