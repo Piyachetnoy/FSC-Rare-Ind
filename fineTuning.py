@@ -18,7 +18,7 @@ parser.add_argument("-o", "--output_dir", type=str, default="./logsFineTune", he
 parser.add_argument("-ts", "--test_split", type=str, default='val', choices=["train", "test", "val"], help="Data split for evaluation")
 parser.add_argument("-ep", "--epochs", type=int, default=500, help="Number of fine-tuning epochs")
 parser.add_argument("-g", "--gpu", type=int, default=0, help="GPU id")
-parser.add_argument("-lr", "--learning_rate", type=float, default=1e-6, help="Fine-tuning learning rate")
+parser.add_argument("-lr", "--learning_rate", type=float, default=1e-4, help="Fine-tuning learning rate")
 parser.add_argument("-m", "--model_path", type=str, default="./data-final/FamNet_Save1.pth", help="Path to the pre-trained model")
 args = parser.parse_args()
 
