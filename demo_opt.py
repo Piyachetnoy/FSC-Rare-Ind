@@ -1,5 +1,5 @@
 """
-Demo file for Few Shot Counting with Dot-based Density Visualization using MPS
+Demo file for Few Shot Counting with Dot-based Density Visualization using GPU
 
 By: Minh Hoai Nguyen (minhhoai@cs.stonybrook.edu)
 Modified: [Your Name]
@@ -153,12 +153,13 @@ parser.add_argument("-th", "--threshold", type=float, default=0.5, help="Density
 args = parser.parse_args()
 
 # Device setup
-if torch.backends.mps.is_available():
-    device = torch.device("0")
-    print("===> Using MPS mode.")
+if torch.cuda.is_available():
+    device = torch.device("cuda:0")  # Use GPU 0
+    print("===> Using CUDA on GPU 0.")
 else:
-    device = torch.device("cpu")
-    print("===> Using CPU mode.")
+    device = torch.device("cpu")  # Fallback to CPU
+    print("===> Using CPU.")
+
 
 # Model setup
 resnet50_conv = Resnet50FPN().to(device)
@@ -226,8 +227,8 @@ else:
     for step in tqdm(range(args.gradient_steps), desc="Adaptation"):
         optimizer.zero_grad()
         output = regressor(features)
-        lCount = args.weight_mincount * MincountLoss(output, boxes, use_gpu=device.type == "mps")
-        lPerturbation = args.weight_perturbation * PerturbationLoss(output, boxes, sigma=8, use_gpu=device.type == "mps")
+        lCount = args.weight_mincount * MincountLoss(output, boxes, use_gpu=device.type == "cuda:0")
+        lPerturbation = args.weight_perturbation * PerturbationLoss(output, boxes, sigma=8, use_gpu=device.type == "cuda:0")
         Loss = lCount + lPerturbation
         Loss.backward()
         optimizer.step()
