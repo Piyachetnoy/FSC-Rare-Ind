@@ -188,7 +188,7 @@ if args.bbox_file is None:
         fout.write("{} {} {} {}\n".format(y1, x1, y2, x2))
 
     fout.close()
-    cv2.destroyWindow("Image")
+    cv2.destroyWindow("image")
     print("Selected bounding boxes are saved to {}".format(out_bbox_file))
 else:
     with open(args.bbox_file, "r") as fin:
