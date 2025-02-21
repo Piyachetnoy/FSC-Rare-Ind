@@ -31,7 +31,7 @@ regressor = CountRegressor(6, pool='mean').cuda()
 
 checkpoint = torch.load(args.model_path)
 print(checkpoint.keys())
-regressor.load_state_dict(checkpoint['model_state_dict'])
+regressor.load_state_dict(checkpoint, strict=False)
 optimizer = optim.Adam(regressor.parameters(), lr=args.learning_rate)
 
 if not os.path.exists(args.output_dir):

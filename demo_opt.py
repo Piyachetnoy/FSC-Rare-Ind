@@ -154,7 +154,7 @@ args = parser.parse_args()
 
 # Device setup
 if torch.backends.mps.is_available():
-    device = torch.device("mps")
+    device = torch.device("0")
     print("===> Using MPS mode.")
 else:
     device = torch.device("cpu")
