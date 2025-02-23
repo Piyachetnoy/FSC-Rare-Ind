@@ -45,35 +45,45 @@ def visualize_output_with_accuracy_levels(image, heatmap, boxes, rslt_file, thre
     medium_density_coords = peak_local_max(heatmap, min_distance, threshold_abs=thresholds[1])
     low_density_coords = peak_local_max(heatmap, min_distance, threshold_abs=thresholds[2])
 
-    plt.figure(figsize=(12, 8))
-    plt.imshow(image)
+    high_density_count = high_density_coords.shape[0]
+    medium_density_count = medium_density_coords.shape[0]
+    low_density_count = low_density_coords.shape[0]
+
+    medium_density_count -= high_density_count
+    low_density_count -= medium_density_count+high_density_count
+    total_count = medium_density_count + high_density_count + low_density_count
+
+    fig, ax = plt.subplots(1, 1, figsize=(12, 8))
+
+    # Plot the image with dots
+    ax.imshow(image)
     
     # Plot dots with different colors for accuracy levels
     if low_density_coords.size > 0:
-        plt.scatter(
+        ax.scatter(
             low_density_coords[:, 1],
             low_density_coords[:, 0],
             color='red',
-            s=15,
-            label='Low Density',
+            s=64,
+            label=f'Low Confident ({low_density_count})',
             alpha=0.8,
         )
     if medium_density_coords.size > 0:
-        plt.scatter(
+        ax.scatter(
             medium_density_coords[:, 1],
             medium_density_coords[:, 0],
             color='blue',
-            s=15,
-            label='Medium Density',
+            s=64,
+            label=f'Medium Confident ({medium_density_count})',
             alpha=0.8,
         )
     if high_density_coords.size > 0:
-        plt.scatter(
+        ax.scatter(
             high_density_coords[:, 1],
             high_density_coords[:, 0],
             color='green',
-            s=15,
-            label='High Density',
+            s=64,
+            label=f'High Confident ({high_density_count})',
             alpha=0.8,
         )
     
@@ -81,18 +91,32 @@ def visualize_output_with_accuracy_levels(image, heatmap, boxes, rslt_file, thre
     for box in boxes:
         if box.numel() == 4:  # Check if the box has exactly 4 elements
             y1, x1, y2, x2 = box.int().cpu().numpy()
-            plt.gca().add_patch(
+            ax.add_patch(
                 plt.Rectangle((x1, y1), x2 - x1, y2 - y1, edgecolor='blue', facecolor='none', lw=2)
             )
         else:
             print("Skipping invalid box:", box)
 
-    plt.title("Dot-based Density Visualization")
-    plt.legend()
-    plt.axis('off')
+    ax.set_title("Dot-based Density Visualization")
+    ax.legend()
+    ax.axis('off')
+
+    # Add total count as text
+    plt.text(
+    0.5, 0.95, f'Total Count: {total_count}', 
+    horizontalalignment='center', 
+    verticalalignment='center', 
+    transform=ax.transAxes, 
+    fontsize=12, 
+    color='purple',
+    bbox=dict(facecolor='white', alpha=0.8, edgecolor='grey')
+    )   
+
     plt.savefig(rslt_file, bbox_inches='tight', pad_inches=0)
     plt.close()
-    print(f"===> Visualized output with dots is saved to {rslt_file}")
+    print(f"===> Visualized output with dots and counts is saved to {rslt_file}")
+
+    
 
 def count_dots_with_adjusted_area(image, heatmap, thresholds=(0.7, 0.65, 0.4), min_distance=10):
     """
@@ -243,14 +267,14 @@ visualize_output_with_accuracy_levels(
     output.detach().cpu(),
     boxes.cpu(),
     rslt_file,
-    thresholds=(0.7, 0.65, 0.4),  # Adjust thresholds as needed
+    thresholds=(0.7, 0.6, 0.4),  # Adjust thresholds as needed
     min_distance=10  # Minimum distance for separating dots
 )
 print(f"===> The predicted count is: {output.sum().item():6.2f}")
 high_count, medium_count, low_count, total_count = count_dots_with_adjusted_area(
     image.detach().cpu(),
     output.detach().cpu(),
-    thresholds=(0.7, 0.65, 0.4),  # Density thresholds
+    thresholds=(0.7, 0.6, 0.3),  # Density thresholds
     min_distance=10  # Minimum distance for separating dots
 )
 

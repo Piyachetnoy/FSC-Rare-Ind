@@ -22,7 +22,7 @@ import numpy as np
 from tqdm import tqdm
 from os.path import exists
 import torch.optim as optim
-from demoopt import count_dots_with_adjusted_area
+from utils import count_dots_with_adjusted_area
 
 
 parser = argparse.ArgumentParser(description="Few Shot Counting Evaluation code")
@@ -37,10 +37,14 @@ parser.add_argument("-wp", "--weight_perturbation", type=float,default=1e-4, hel
 parser.add_argument("-g",  "--gpu-id", type=int, default=0, help="GPU id. Default 0 for the first GPU. Use -1 for CPU.")
 args = parser.parse_args()
 
+# data_path = args.data_path
+# anno_file = data_path + 'annotations.json'
+# data_split_file = data_path + 'Train_Test_Val.json'
+# im_dir = data_path + 'indt-objects-V4'
 data_path = args.data_path
-anno_file = data_path + 'annotations.json'
-data_split_file = data_path + 'Train_Test_Val.json'
-im_dir = data_path + 'indt-objects-V4'
+anno_file = data_path + 'annotation_FSC147_384.json'
+data_split_file = data_path + 'Train_Test_Val_FSC_147.json'
+im_dir = data_path + 'images_384_VarV2'
 
 if not exists(anno_file) or not exists(im_dir):
     print("Make sure you set up the --data-path correctly.")
@@ -99,7 +103,7 @@ for im_id in pbar:
     if use_gpu:
         image = image.cuda()
         boxes = boxes.cuda()
-
+    
     with torch.no_grad(): features = extract_features(resnet50_conv, image.unsqueeze(0), boxes.unsqueeze(0), MAPS, Scales)
 
     if not args.adapt:
@@ -123,13 +127,13 @@ for im_id in pbar:
         features.required_grad = False
         output = adapted_regressor(features)
 
-    gt_cnt = dots.shape[0]
-    _, _, low_count, _ = count_dots_with_adjusted_area(
-    image.detach().cuda(),
-    output.detach().cuda(),
-    thresholds=(0.7, 0.65, 0.4),  # Density thresholds
-    min_distance=10  # Minimum distance for separating dots
+    _, _, low_count, unq = count_dots_with_adjusted_area(
+    image.detach().cpu(),
+    output.detach().cpu(),
+    thresholds=(0.7, 0.65, 0.3),
+    min_distance=10
     )
+    gt_cnt = dots.shape[0]
     pred_cnt = low_count
     cnt = cnt + 1
     err = abs(gt_cnt - pred_cnt)

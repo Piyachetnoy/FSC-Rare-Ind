@@ -7,6 +7,7 @@ import cv2
 import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
+from skimage.feature import peak_local_max
 matplotlib.use('agg')
 
 
@@ -450,4 +451,27 @@ def format_for_plotting(tensor):
     else:
         return formatted.permute(1, 2, 0).detach()
 
+def count_dots_with_adjusted_area(image, heatmap, thresholds=(0.7, 0.65, 0.4), min_distance=10):
+    if torch.is_tensor(image):
+        image = image.permute(1, 2, 0).cpu().numpy()
 
+    heatmap = heatmap.squeeze().cpu().numpy()
+    heatmap = (heatmap - np.min(heatmap)) / (np.max(heatmap) - np.min(heatmap))
+
+    # Extract dots with different density thresholds and adjustable area
+    high_density_coords = peak_local_max(heatmap, min_distance=min_distance, threshold_abs=thresholds[0])
+    medium_density_coords = peak_local_max(heatmap, min_distance=min_distance, threshold_abs=thresholds[1])
+    low_density_coords = peak_local_max(heatmap, min_distance=min_distance, threshold_abs=thresholds[2])
+
+    all_coords = np.vstack([high_density_coords, medium_density_coords, low_density_coords])
+    unique_coords = np.unique(all_coords, axis=0)
+
+    # Count total unique dots
+    total_unique_dots = unique_coords.shape[0]
+    # Count dots in each category
+    high_density_count = high_density_coords.shape[0]
+    medium_density_count = medium_density_coords.shape[0]
+    low_density_count = low_density_coords.shape[0]
+
+    # Print the counts
+    return high_density_count, medium_density_count, low_density_count, total_unique_dots

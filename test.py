@@ -36,10 +36,15 @@ parser.add_argument("-wp", "--weight_perturbation", type=float,default=1e-4, hel
 parser.add_argument("-g",  "--gpu-id", type=int, default=0, help="GPU id. Default 0 for the first GPU. Use -1 for CPU.")
 args = parser.parse_args()
 
+# data_path = args.data_path
+# anno_file = data_path + 'annotations.json'
+# data_split_file = data_path + 'Train_Test_Val.json'
+# im_dir = data_path + 'indt-objects-V4'
+
 data_path = args.data_path
-anno_file = data_path + 'annotations.json'
-data_split_file = data_path + 'Train_Test_Val.json'
-im_dir = data_path + 'indt-objects-V4'
+anno_file = data_path + 'annotation_FSC147_384.json'
+data_split_file = data_path + 'Train_Test_Val_FSC_147.json'
+im_dir = data_path + 'images_384_VarV2'
 
 if not exists(anno_file) or not exists(im_dir):
     print("Make sure you set up the --data-path correctly.")
