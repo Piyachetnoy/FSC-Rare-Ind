@@ -39,7 +39,7 @@ args = parser.parse_args()
 data_path = args.data_path
 anno_file = data_path + 'annotations.json'
 data_split_file = data_path + 'Train_Test_Val.json'
-im_dir = data_path + 'indt-objects-V5'
+im_dir = data_path + 'indt-objects-V4'
 
 if not exists(anno_file) or not exists(im_dir):
     print("Make sure you set up the --data-path correctly.")
@@ -133,4 +133,4 @@ for im_id in pbar:
                          format(im_id, gt_cnt, pred_cnt, abs(pred_cnt - gt_cnt), SAE/cnt, (SSE/cnt)**0.5))
     print("")
 
-print('On {} data, MAE: {:6.2f}, RMSE: {:6.2f}'.format(args.test_split, SAE/cnt, (SSE/cnt)**0.5))
+print('On {} data, MAE: {:6.3f}, RMSE: {:6.3f}'.format(args.test_split, SAE/cnt, (SSE/cnt)**0.5))

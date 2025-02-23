@@ -34,7 +34,7 @@ args = parser.parse_args()
 data_path = args.data_path
 anno_file = data_path + 'annotations.json'
 data_split_file = data_path + 'Train_Test_Val.json'
-im_dir = data_path + 'indt-objects-V5'
+im_dir = data_path + 'indt-objects-V4'
 gt_dir = data_path + 'density_map_adaptive_V1'
 
 if not exists(args.output_dir):
@@ -175,20 +175,15 @@ for epoch in range(0,args.epochs):
     regressor.eval()
     val_mae,val_rmse = eval()
     stats.append((train_loss, train_mae, train_rmse, val_mae, val_rmse))
-    stats_file = join(args.output_dir, "stats0221" +  ".txt")
+    stats_file = join(args.output_dir, "stats0223V1" +  ".txt")
     with open(stats_file, 'w') as f:
         for s in stats:
             f.write("%s\n" % ','.join([str(x) for x in s]))    
     if best_mae >= val_mae:
         best_mae = val_mae
         best_rmse = val_rmse
-        model_name = args.output_dir + '/' + "FamNet0221.pth"
+        model_name = args.output_dir + '/' + "FamNet0223V1.pth"
         torch.save(regressor.state_dict(), model_name)
 
     print("Epoch {}, Avg. Epoch Loss: {} Train MAE: {} Train RMSE: {} Val MAE: {} Val RMSE: {} Best Val MAE: {} Best Val RMSE: {} ".format(
               epoch+1,  stats[-1][0], stats[-1][1], stats[-1][2], stats[-1][3], stats[-1][4], best_mae, best_rmse))
-    
-
-
-
-
