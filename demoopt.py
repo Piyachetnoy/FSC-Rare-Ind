@@ -72,7 +72,7 @@ def visualize_output_with_accuracy_levels(image, heatmap, boxes, rslt_file, thre
         ax.scatter(
             medium_density_coords[:, 1],
             medium_density_coords[:, 0],
-            color='blue',
+            color='#1F51FF',
             s=64,
             label=f'Medium Confident ({medium_density_count})',
             alpha=0.8,
@@ -81,7 +81,7 @@ def visualize_output_with_accuracy_levels(image, heatmap, boxes, rslt_file, thre
         ax.scatter(
             high_density_coords[:, 1],
             high_density_coords[:, 0],
-            color='green',
+            color='#39FF14',
             s=64,
             label=f'High Confident ({high_density_count})',
             alpha=0.8,
@@ -267,14 +267,14 @@ visualize_output_with_accuracy_levels(
     output.detach().cpu(),
     boxes.cpu(),
     rslt_file,
-    thresholds=(0.7, 0.6, 0.4),  # Adjust thresholds as needed
+    thresholds=(0.7, 0.6, 0.3),  # Adjust thresholds as needed
     min_distance=10  # Minimum distance for separating dots
 )
 print(f"===> The predicted count is: {output.sum().item():6.2f}")
 high_count, medium_count, low_count, total_count = count_dots_with_adjusted_area(
     image.detach().cpu(),
     output.detach().cpu(),
-    thresholds=(0.7, 0.6, 0.3),  # Density thresholds
+    thresholds=(0.7, 0.6, 0.4),  # Density thresholds
     min_distance=10  # Minimum distance for separating dots
 )
 
