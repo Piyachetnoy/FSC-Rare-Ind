@@ -1,6 +1,6 @@
 # Few-Shot Counting for Custom Industrial Objects
 
-Simple overview of use/purpose.
+
 
 ## Description
 
