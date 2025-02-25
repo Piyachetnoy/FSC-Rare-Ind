@@ -15,7 +15,7 @@ improvements.
 
 ## Getting Started
 
-Clone repository to your local device. \par<br/>
+Clone repository to your local device.<br/>
 Our datasets and annotation files can be found at [Download Datasets]()
 
 ### Dependencies
