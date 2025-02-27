@@ -1,6 +1,6 @@
 # Few-Shot Counting for Custom Industrial Objects
 
-
+Automation of industrial objects counting, using **Few-Shot Counting** and **Feature Detection** approach.
 
 ## Description
 
