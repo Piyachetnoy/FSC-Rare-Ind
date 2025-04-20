@@ -188,7 +188,7 @@ else:
 # Model setup
 resnet50_conv = Resnet50FPN().to(device)
 regressor = CountRegressor(6, pool='mean').to(device)
-regressor.load_state_dict(torch.load(args.model_path, map_location=device))
+regressor.load_state_dict(torch.load(args.model_path, map_location=device), weights_only=True)
 
 resnet50_conv.eval()
 regressor.eval()
