@@ -25,13 +25,14 @@ Our datasets can be found at [Download Datasets](https://drive.google.com/file/d
 
 ### Installing
 
-### Executing program
-
-* How to run the program
-* Step-by-step bullets
 ```
 pip install -r requirements.txt
 ```
+
+### Executing program
+
+* How to run the program
+
 
 ## Authors
 
