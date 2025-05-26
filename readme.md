@@ -35,7 +35,7 @@ pip install -r requirements.txt
 
 ## Authors
 
-**Piyachet Pongsantichai**  
+[Piyachet Pongsantichai](https://www.linkedin.com/in/piyachet-p2145/)
 > p.pongsantichai{at}gmail.com
 
 ## Version History
