@@ -65,7 +65,7 @@ if use_gpu: resnet50_conv.cuda()
 resnet50_conv.eval()
 
 regressor = CountRegressor(6, pool='mean')
-regressor.load_state_dict(torch.load(args.model_path), weights_only=True)
+regressor.load_state_dict(torch.load(args.model_path))
 if use_gpu: regressor.cuda()
 regressor.eval()
 

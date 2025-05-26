@@ -1,10 +1,10 @@
 """
-Demo file for Few Shot Counting with Dot-based Density Visualization using GPU
+Demo file for Few Shot Counting with Dot-based Density Visualization
 
 By: Minh Hoai Nguyen (minhhoai@cs.stonybrook.edu)
-Modified: [Your Name]
+Modified: Piyachet Pongsantichai
 Created: 19-Apr-2021
-Last modified: [Date]
+Last modified: 26-May-2025
 """
 
 import cv2
@@ -188,7 +188,7 @@ else:
 # Model setup
 resnet50_conv = Resnet50FPN().to(device)
 regressor = CountRegressor(6, pool='mean').to(device)
-regressor.load_state_dict(torch.load(args.model_path, map_location=device), weights_only=True)
+regressor.load_state_dict(torch.load(args.model_path, map_location=device))
 
 resnet50_conv.eval()
 regressor.eval()

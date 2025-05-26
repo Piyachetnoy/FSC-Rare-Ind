@@ -2,8 +2,9 @@
 Demo file for Few Shot Counting
 
 By: Minh Hoai Nguyen (minhhoai@cs.stonybrook.edu)
+Modified: Piyachet Pongsantichai
 Created: 19-Apr-2021
-Last modified: 19-Apr-2021
+Last modified: 26-May-2025
 """
 
 import cv2
@@ -47,9 +48,9 @@ regressor = CountRegressor(6, pool='mean')
 if use_gpu:
     resnet50_conv.cuda()
     regressor.cuda()
-    regressor.load_state_dict(torch.load(args.model_path), strict=False, weights_only=True)
+    regressor.load_state_dict(torch.load(args.model_path))
 else:
-    regressor.load_state_dict(torch.load(args.model_path, map_location=torch.device('cpu')), weights_only=True)
+    regressor.load_state_dict(torch.load(args.model_path, map_location=torch.device('cpu')))
 
 resnet50_conv.eval()
 regressor.eval()
@@ -72,7 +73,7 @@ if args.bbox_file is None: # if no bounding box file is given, prompt the user f
         fout.write("{} {} {} {}\n".format(y1, x1, y2, x2))
 
     fout.close()
-    cv2.destroyWindow("image")
+    cv2.destroyWindow("Image")
     print("selected bounding boxes are saved to {}".format(out_bbox_file))
 else:
     with open(args.bbox_file, "r") as fin:
@@ -133,10 +134,8 @@ else:
 
 
 print('===> The predicted count is: {:6.2f}'.format(output.sum().item()))
-# print(output.sum())
-# print(output)
-print(output.gt(0).sum())
 
 rslt_file = "{}/{}_out.png".format(args.output_dir, image_name)
 visualize_output_and_save(image.detach().cpu(), output.detach().cpu(), boxes.cpu(), rslt_file)
 print("===> Visualized output is saved to {}".format(rslt_file))
+
