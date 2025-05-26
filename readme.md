@@ -48,3 +48,6 @@ Piyachet Pongsantichai
 This project is licensed under the [MIT](LICENSE.md) License - see the .md file for details
 
 ## Acknowledgments
+This work builds upon concepts from:
+
+Ranjan, V., Sharma, U., Nguyen, T., & Hoai, M. (2021). *Learning To Count Everything*. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR).  
