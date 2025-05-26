@@ -175,7 +175,7 @@ for epoch in range(0,args.epochs):
     regressor.eval()
     val_mae,val_rmse = eval()
     stats.append((train_loss, train_mae, train_rmse, val_mae, val_rmse))
-    stats_file = join(args.output_dir, "stats0223V1" +  ".txt")
+    stats_file = join(args.output_dir, "stats", "stats0223V1" +  ".txt")
     with open(stats_file, 'w') as f:
         for s in stats:
             f.write("%s\n" % ','.join([str(x) for x in s]))    
