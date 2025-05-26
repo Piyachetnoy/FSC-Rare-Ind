@@ -35,8 +35,8 @@ pip install -r requirements.txt
 
 ## Authors
 
-Piyachet Pongsantichai
-[LinkedIn](https://www.linkedin.com/in/piyachet-p2145/)
+Piyachet Pongsantichai <br/>
+> p.pongsantichai{at}gmail.com
 
 ## Version History
 
@@ -50,4 +50,4 @@ This project is licensed under the [MIT](LICENSE.md) License - see the .md file 
 ## Acknowledgments
 This work builds upon concepts from:
 
-Ranjan, V., Sharma, U., Nguyen, T., & Hoai, M. (2021). *Learning To Count Everything*. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR).  
+> Ranjan, V., Sharma, U., Nguyen, T., & Hoai, M. (2021). *Learning To Count Everything*. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR).  
