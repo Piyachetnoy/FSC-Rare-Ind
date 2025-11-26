@@ -4,9 +4,6 @@
 """
 Test code written by Viresh Ranjan
 Modified by Piyachet Pongsantichai
-
-Last modified by: Minh Hoai Nguyen (minhhoai@cs.stonybrook.edu)
-Date: 2021/04/19
 """
 
 import copy
