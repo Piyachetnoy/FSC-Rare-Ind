@@ -225,38 +225,38 @@ We designed and evaluated four distinct workflows to understand the accuracy-eff
 
 4. **Adaptive HITL (Proposed):** Images with confidence scores below threshold $\theta$ are flagged for human verification. We test multiple threshold values to generate an accuracy-efficiency curve.
 
-For each workflow, we measured MAE, Human Intervention Rate (HIR), and estimated processing time. Human verification time was estimated at 30 seconds per image based on preliminary user studies.
+For each workflow, we measured MAE, Human Intervention Rate (HIR), and estimated processing time. Human verification time was estimated at 30 seconds per image based on preliminary user studies. The experiment was conducted on 81 test images from the INDT-409 dataset using the INDT-409-trained model.
 
-**Table 5: Workflow Comparison Results (INDT-576 Test Set, INDT-409-trained model)**
+**Table 5: Workflow Comparison Results (INDT-409 Test Set, INDT-409-trained model)**
 
 | Workflow | MAE | RMSE | HIR (%) | Est. Processing Time (min) |
 |----------|-----|------|---------|---------------------------|
-| Fully Automated | 9.364 | 16.99 | 0% | 2.3 |
-| Random Sampling (25%) | 7.102 | 14.21 | 25% | 10.8 |
-| Random Sampling (50%) | 5.418 | 11.85 | 50% | 19.3 |
-| Random Sampling (75%) | 3.891 | 9.627 | 75% | 27.8 |
-| Adaptive HITL ($\theta=0.3$) | 8.125 | 15.42 | 15% | 7.2 |
-| Adaptive HITL ($\theta=0.5$) | 6.234 | 12.93 | 32% | 13.1 |
-| Adaptive HITL ($\theta=0.7$) | 4.157 | 10.08 | 58% | 22.4 |
-| Full Manual Verification | 2.115 | 5.832 | 100% | 36.3 |
+| Fully Automated | 4.530 | 6.556 | 0% | 0.3 |
+| Random Sampling (25%) | 3.863 | 5.508 | 25% | 10.3 |
+| Random Sampling (50%) | 3.494 | 5.050 | 50% | 20.3 |
+| Random Sampling (75%) | 2.950 | 4.287 | 75% | 30.3 |
+| Adaptive HITL ($\theta=0.6$) | 2.732 | 4.394 | 38% | 15.8 |
+| Adaptive HITL ($\theta=0.7$) | 1.959 | 2.130 | 62% | 25.3 |
+| Adaptive HITL ($\theta=0.8$) | 1.965 | 2.047 | 77% | 31.3 |
+| Full Manual Verification | 2.000 | 2.000 | 100% | 40.8 |
 
-The results demonstrate that the adaptive HITL approach achieves superior efficiency compared to random sampling at equivalent accuracy levels. For example, at approximately 30% HIR, adaptive HITL achieves MAE of 6.234, whereas random sampling requires 50% HIR to reach similar accuracy (MAE 5.418).
+The results demonstrate that the adaptive HITL approach achieves superior efficiency compared to random sampling at equivalent accuracy levels. At approximately 38% HIR, Adaptive HITL ($\theta=0.6$) achieves MAE of 2.732, which significantly outperforms Random Sampling at 50% HIR (MAE 3.494). More notably, Adaptive HITL with $\theta=0.7$ achieves MAE of 1.959 with only 62% HIR, surpassing even Random Sampling at 75% (MAE 2.950) while requiring less human effort.
 
 **Figure 5: Accuracy-Efficiency Trade-off Curves**
 
 ![Trade-off Curve Placeholder](images/hitl_tradeoff_curve.png)
 
-*Note: Figure shows MAE vs. Human Intervention Rate for different workflows. The adaptive HITL curve dominates random sampling, indicating better performance.*
+*Note: Figure shows MAE vs. Human Intervention Rate for different workflows. The adaptive HITL curve dominates random sampling, indicating better performance at equivalent intervention rates.*
 
-This demonstrates that confidence-based selection is more effective than random selection for determining which cases require human oversight. The adaptive approach concentrates human effort on genuinely difficult cases, whereas random sampling wastes effort on easy cases while potentially missing difficult ones.
+This demonstrates that confidence-based selection is more effective than random selection for determining which cases require human oversight. The adaptive approach concentrates human effort on genuinely difficult cases, whereas random sampling wastes effort on easy cases while potentially missing difficult ones. Remarkably, Adaptive HITL at $\theta=0.7$ achieves accuracy comparable to Full Manual Verification (MAE 1.959 vs. 2.000) while reducing human intervention by 38%.
 
 ### 4.6 Practical Deployment Considerations
 
 Based on our experiments, we provide recommendations for practical deployment:
 
-- **For high-accuracy requirements (MAE < 5):** Use adaptive HITL with $\theta=0.7$, accepting ~58% human intervention rate.
-- **For balanced operations (MAE < 7):** Use adaptive HITL with $\theta=0.5$, requiring ~32% human intervention rate.
-- **For high-efficiency operations (MAE < 9):** Use adaptive HITL with $\theta=0.3$, requiring only ~15% human intervention rate.
+- **For high-accuracy requirements (MAE < 2):** Use adaptive HITL with $\theta=0.7$ or higher, accepting ~62% human intervention rate. This achieves accuracy comparable to full manual verification.
+- **For balanced operations (MAE < 3):** Use adaptive HITL with $\theta=0.6$, requiring ~38% human intervention rate.
+- **For high-efficiency operations (MAE < 5):** Use fully automated workflow, requiring no human intervention while maintaining acceptable accuracy.
 
 These recommendations can be adjusted based on operational priorities, cost considerations, and accuracy requirements specific to each industrial application.
 
@@ -310,7 +310,7 @@ This paper proposes a comprehensive approach to industrial object counting using
 
 4. **Adaptive HITL workflow:** Our confidence-based selective verification system achieves superior accuracy-efficiency trade-offs compared to baseline approaches, providing a practical framework for deploying FSC in real-world industrial settings.
 
-Experimental results demonstrate that fine-tuned FamNet models achieve substantial accuracy improvements on industrial objects (MAE < 10), though with some reduction in general object counting ability. Our adaptive HITL workflow achieves equivalent accuracy to random sampling with significantly lower human intervention rates (e.g., 32% vs. 50% HIR for MAE ~6).
+Experimental results demonstrate that fine-tuned FamNet models achieve substantial accuracy improvements on industrial objects (MAE < 5), though with some reduction in general object counting ability. Our adaptive HITL workflow achieves superior accuracy compared to random sampling with lower human intervention rates (e.g., MAE 1.959 at 62% HIR vs. MAE 2.950 at 75% HIR for random sampling).
 
 These findings highlight FSC's potential for industrial automation when deployed with appropriate human oversight. The framework provides operators with tunable parameters to balance accuracy and efficiency based on operational requirements, making it suitable for practical deployment in manufacturing, warehousing, and inventory management scenarios.
 
