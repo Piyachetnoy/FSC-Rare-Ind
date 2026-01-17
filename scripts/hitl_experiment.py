@@ -703,21 +703,21 @@ def main():
     workflow_results = []
     
     # 1. Fully Automated
-    print("\n[1/8] Evaluating Fully Automated workflow...")
+    print("\n[1/9] Evaluating Fully Automated workflow...")
     workflow_results.append(evaluate_fully_automated(results, config))
     
     # 2. Random Sampling at different rates
     for rate in [0.25, 0.50, 0.75]:
-        print(f"\n[{len(workflow_results)+1}/8] Evaluating Random Sampling ({int(rate*100)}%)...")
+        print(f"\n[{len(workflow_results)+1}/9] Evaluating Random Sampling ({int(rate*100)}%)...")
         workflow_results.append(evaluate_random_sampling(results, config, rate, args.seed))
     
     # 3. Adaptive HITL at different thresholds
-    for threshold in [0.3, 0.5, 0.7]:
-        print(f"\n[{len(workflow_results)+1}/8] Evaluating Adaptive HITL (θ={threshold})...")
+    for threshold in [0.6, 0.7, 0.8, 0.9]:
+        print(f"\n[{len(workflow_results)+1}/9] Evaluating Adaptive HITL (θ={threshold})...")
         workflow_results.append(evaluate_adaptive_hitl(results, config, threshold))
     
     # 4. Full Manual Verification
-    print(f"\n[{len(workflow_results)+1}/8] Evaluating Full Manual Verification...")
+    print(f"\n[{len(workflow_results)+1}/9] Evaluating Full Manual Verification...")
     workflow_results.append(evaluate_full_manual(results, config))
     
     # Save all results
