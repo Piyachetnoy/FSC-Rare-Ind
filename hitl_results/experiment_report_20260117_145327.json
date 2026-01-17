@@ -1,0 +1,20 @@
+{
+  "experiment_timestamp": "20260117_145327",
+  "config": {
+    "dataset_name": "INDT-409",
+    "model_path": "./logsSave/INDT-409trained.pth",
+    "data_path": "./data-final/",
+    "annotation_file": "./annotation_json/annotations409.json",
+    "image_dir": "./data-final/INDT-409",
+    "test_split": "test",
+    "human_verification_time_sec": 30.0,
+    "automated_time_per_image_sec": 0.2,
+    "random_seed": 42,
+    "confidence_alpha": 0.5,
+    "confidence_beta": 0.5
+  },
+  "summary": {
+    "total_images": 81,
+    "baseline_mae": 4.529963182814328,
+    "baseline_rmse": 6.556210397295906,
+    "avg_confidence": 
