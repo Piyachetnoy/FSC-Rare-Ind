@@ -38,6 +38,38 @@ from utils import MAPS, Scales, Transform, extract_features
 
 
 # ============================================================================
+# JSON Encoder for NumPy types
+# ============================================================================
+
+class NumpyEncoder(json.JSONEncoder):
+    """Custom JSON encoder for NumPy types."""
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super().default(obj)
+
+
+def convert_to_python_types(obj):
+    """Recursively convert NumPy types to Python native types."""
+    if isinstance(obj, dict):
+        return {k: convert_to_python_types(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [convert_to_python_types(item) for item in obj]
+    elif isinstance(obj, np.integer):
+        return int(obj)
+    elif isinstance(obj, np.floating):
+        return float(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    else:
+        return obj
+
+
+# ============================================================================
 # Data Classes for Results Storage
 # ============================================================================
 
@@ -547,7 +579,9 @@ def save_results(results: List[ImageResult],
     
     report_path = os.path.join(output_dir, f"experiment_report_{timestamp}.json")
     with open(report_path, 'w') as f:
-        json.dump(report, f, indent=2)
+        # Convert NumPy types to Python native types before JSON serialization
+        report_converted = convert_to_python_types(report)
+        json.dump(report_converted, f, indent=2, cls=NumpyEncoder)
     print(f"Saved detailed report to: {report_path}")
     
     # Generate and save summary table (for easy reading)
