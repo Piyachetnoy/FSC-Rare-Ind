@@ -1,0 +1,102 @@
+OMML (Office Math Markup Language) for Equations in prescript-4pages.md
+================================================================================
+
+EQUATION 1: Confidence Score Formula
+C = α · C_variance + β · C_correlation
+
+<m:oMathPara>
+  <m:oMath>
+    <m:r>
+      <m:t>C</m:t>
+    </m:r>
+    <m:r>
+      <m:t xml:space="preserve"> = </m:t>
+    </m:r>
+    <m:r>
+      <m:t>α</m:t>
+    </m:r>
+    <m:r>
+      <m:t xml:space="preserve"> · </m:t>
+    </m:r>
+    <m:sSub>
+      <m:sSubPr>
+        <m:ctrlPr></m:ctrlPr>
+      </m:sSubPr>
+      <m:e>
+        <m:r>
+          <m:t>C</m:t>
+        </m:r>
+      </m:e>
+      <m:sub>
+        <m:r>
+          <m:t>variance</m:t>
+        </m:r>
+      </m:sub>
+    </m:sSub>
+    <m:r>
+      <m:t xml:space="preserve"> + </m:t>
+    </m:r>
+    <m:r>
+      <m:t>β</m:t>
+    </m:r>
+    <m:r>
+      <m:t xml:space="preserve"> · </m:t>
+    </m:r>
+    <m:sSub>
+      <m:sSubPr>
+        <m:ctrlPr></m:ctrlPr>
+      </m:sSubPr>
+      <m:e>
+        <m:r>
+          <m:t>C</m:t>
+        </m:r>
+      </m:e>
+      <m:sub>
+        <m:r>
+          <m:t>correlation</m:t>
+        </m:r>
+      </m:sub>
+    </m:sSub>
+  </m:oMath>
+</m:oMathPara>
+
+================================================================================
+HOW TO USE IN WORD (MAC):
+1. Copy the XML code above (from <m:oMathPara> to </m:oMathPara>)
+2. In Word, press Option+F9 (or Fn+Option+F9) to show field codes
+3. Paste the OMML code
+4. Press Option+F9 again to convert to equation
+
+ALTERNATIVE METHOD (Easier - Mac):
+1. In Word, go to Insert > Equation (or press Option+Command+E)
+2. Type: C = α · C_variance + β · C_correlation
+3. Select "variance" and use Control+Shift+= (or Cmd+Shift+=) to make it subscript
+4. Select "correlation" and use Control+Shift+= (or Cmd+Shift+=) to make it subscript
+5. Insert Greek letters: 
+   - Insert > Symbol > Greek letters (α, β)
+   - OR type "alpha" and press Space to convert to α
+   - OR type "beta" and press Space to convert to β
+   - OR type "theta" and press Space to convert to θ
+
+================================================================================
+INLINE EQUATIONS (for reference):
+- $1\times10^{-6}$ is just notation, can be typed as: 1×10⁻⁶
+- $C > \theta$ can be typed as: C > θ
+- $C \leq \theta$ can be typed as: C ≤ θ
+- $\theta=0.6$ can be typed as: θ = 0.6
+
+================================================================================
+GREEK LETTERS TO INSERT IN WORD (MAC):
+- α (alpha): Insert > Symbol > Greek letters, or type "alpha" and press Space
+- β (beta): Insert > Symbol > Greek letters, or type "beta" and press Space  
+- θ (theta): Insert > Symbol > Greek letters, or type "theta" and press Space
+
+================================================================================
+MAC KEYBOARD SHORTCUTS SUMMARY:
+- Insert Equation: Option+Command+E (or Insert > Equation)
+- Show/Hide Field Codes: Option+F9 (or Fn+Option+F9)
+- Subscript: Control+Shift+= (or Cmd+Shift+=)
+- Superscript: Control+Shift+Command+= (or Cmd+Shift+Plus)
+- Greek letters: Type "alpha", "beta", "theta" + Space
+
+================================================================================

@@ -6,7 +6,7 @@
 
 ## Abstract
 
-Counting industrial objects is challenging due to their similar appearances, complex shapes, and variable environmental conditions. This paper adapts Few-Shot Counting (FSC) to minimize labeled data requirements while improving accuracy through a Human-in-the-Loop (HITL) workflow. We use FamNet with rule-based feature detection to enhance robustness in industrial settings and introduce a confidence-based selective verification mechanism. Additionally, we present the INDT dataset, focusing on diverse industrial objects. Our approach integrates density map estimation with feature detection and adaptive human intervention to improve interpretability and reduce over-counting errors. Experimental results demonstrate that fine-tuned models achieve superior performance on industrial objects while maintaining reasonable generalization to other datasets. Furthermore, our proposed adaptive HITL workflow achieves an optimal balance between accuracy and efficiency, outperforming fully automated, full manual verification, and random sampling approaches. This research highlights FSC's potential for industrial automation with practical deployment considerations.
+Counting industrial objects is challenging due to their similar appearances, complex shapes, and variable environmental conditions. This paper adapts Few-Shot Counting (FSC) to minimize labeled data requirements while improving accuracy through a Human-in-the-Loop (HITL) workflow. We use FamNet with rule-based feature detection to enhance robustness in industrial settings and introduce a confidence-based selective verification mechanism. Additionally, we present the INDT dataset, focusing on diverse industrial objects. Our approach integrates density map estimation with feature detection and adaptive human intervention to improve interpretability and reduce over-counting errors. Experimental results demonstrate that models trained on domain-specific industrial datasets achieve superior performance on industrial objects compared to general pre-trained models. Furthermore, our proposed adaptive HITL workflow achieves an optimal balance between accuracy and efficiency, outperforming fully automated, full manual verification, and random sampling approaches. This research highlights FSC's potential for industrial automation with practical deployment considerations.
 
 ## 1. Introduction
 
@@ -50,7 +50,7 @@ The feature extraction module utilizes a ResNet-50 backbone, pre-trained on Imag
 
 The density prediction module employs correlation maps to establish feature relationships between query images and exemplars, generating adaptive density maps for precise object counting. A gradient-based test-time adaptation strategy refines the density estimation by leveraging exemplar locations, thereby improving generalization to unseen object categories.
 
-We train FamNet models using our INDT-576 and INDT-409 datasets to enhance robustness against occlusion and background clutter in industrial object tasks. The training process uses a data split ratio of 70% for training, 20% for testing, and 10% for validation, with 100 epochs and a learning rate of $1\times10^{-6}$.
+We train FamNet models from scratch using our INDT-576 and INDT-409 datasets to enhance robustness against occlusion and background clutter in industrial object tasks. Rather than fine-tuning from pre-trained weights, we initialize and train the density prediction module entirely on our industrial datasets, allowing the model to learn features specific to industrial object counting. The training process uses a data split ratio of 70% for training, 20% for testing, and 10% for validation, with 100 epochs and a learning rate of $1\times10^{-6}$.
 
 ### 3.2 PBAT (Point and Box Annotation Tool)
 
@@ -146,7 +146,7 @@ For HITL workflow evaluation, we additionally measure:
 
 We trained models using INDT-576 and INDT-409 datasets, with a data split ratio of 70% for training, 20% for testing, and 10% for validation. This ensures a balanced evaluation while preventing overfitting. The model was trained for 100 epochs with a learning rate of $1\times10^{-6}$, which provided stable convergence and minimized loss fluctuations.
 
-After training, we evaluated the models using MAE and RMSE on the validation and test sets. The results compare a pre-trained FamNet (trained on FSC-147), a FamNet fine-tuned on INDT-576, and a FamNet fine-tuned on INDT-409.
+After training, we evaluated the models using MAE and RMSE on the validation and test sets. The results compare a pre-trained FamNet (trained on FSC-147) with FamNet models trained from scratch on INDT-576 and INDT-409 datasets. Note that the INDT-trained models use the same FamNet architecture but are trained entirely on our industrial datasets rather than being fine-tuned from the FSC-147 pre-trained weights.
 
 **Table 1: Comparison of FamNet models on validation and test sets.**
 
@@ -156,7 +156,7 @@ After training, we evaluated the models using MAE and RMSE on the validation and
 | Trained with INDT-576 | 10.90 | 18.61 | 9.501 | 13.81 |
 | Trained with INDT-409 | 3.977 | 5.596 | 6.321 | 12.51 |
 
-The fine-tuned models demonstrate substantial improvements over the pre-trained baseline, with INDT-409 achieving the best performance on its validation and test sets. This confirms that domain-specific fine-tuning enhances model accuracy for industrial object counting tasks.
+The domain-trained models demonstrate substantial improvements over the pre-trained baseline, with INDT-409 achieving the best performance on its validation and test sets. This confirms that training on domain-specific industrial datasets significantly enhances model accuracy for industrial object counting tasks.
 
 ### 4.3 Cross-Dataset Generalization
 
@@ -182,7 +182,7 @@ To assess generalization across different object categories—a key strength of 
 | Trained with INDT-576 | 50.67 | 154.5 |
 | Trained with INDT-409 | 58.50 | 157.9 |
 
-The fine-tuned models show decreased performance on the general FSC-147 benchmark, highlighting the trade-off between domain adaptation and broad generalization. This suggests that for practical industrial applications, domain-specific training is preferable when the target object categories are well-defined.
+The INDT-trained models show decreased performance on the general FSC-147 benchmark, highlighting the trade-off between domain specialization and broad generalization. This is expected, as models trained from scratch on industrial objects learn features specific to those object types. For practical industrial applications with well-defined object categories, domain-specific training from scratch is preferable over using general pre-trained models.
 
 ### 4.4 Hybrid Post-Processing Evaluation
 
@@ -196,7 +196,7 @@ We applied our hybrid feature detection post-processing to the density maps gene
 | Trained with INDT-576 | 15.69 | 21.33 |
 | Trained with INDT-409 | 18.43 | 32.29 |
 
-Interestingly, post-processing improves the pre-trained model's performance but degrades the fine-tuned models' accuracy. This suggests that fine-tuned models learn to produce density maps better suited for direct integration, whereas the pre-trained model benefits from explicit peak extraction. However, despite mixed quantitative results, post-processing provides valuable visualizations and interpretability, which are important for human oversight in HITL workflows.
+Interestingly, post-processing improves the pre-trained model's performance but degrades the INDT-trained models' accuracy. This suggests that models trained from scratch on industrial datasets learn to produce density maps optimized for direct integration, whereas the general pre-trained model benefits from explicit peak extraction. However, despite mixed quantitative results, post-processing provides valuable visualizations and interpretability, which are important for human oversight in HITL workflows.
 
 Using `peak_local_max`, we extract high, medium, and low-density peaks from the heatmap. These peaks are visualized as colored dots, aiding in interpretation and refinement. By adjusting the minimum distance parameter, we control dot separation to minimize over-counting errors.
 
@@ -264,13 +264,13 @@ These recommendations can be adjusted based on operational priorities, cost cons
 
 ### 5.1 Model Performance and Domain Adaptation
 
-Our experiments confirm that Few-Shot Counting, specifically FamNet, can be effectively adapted to industrial object counting tasks through fine-tuning on domain-specific datasets. The fine-tuned models achieve substantial improvements over pre-trained baselines, with MAE reductions of up to 60% on industrial test sets.
+Our experiments confirm that the FamNet architecture can be effectively trained from scratch on domain-specific industrial datasets to achieve superior counting performance. The INDT-trained models achieve substantial improvements over the FSC-147 pre-trained baseline, with MAE reductions of up to 60% on industrial test sets.
 
-However, we observe a clear trade-off between domain specialization and general adaptability. Models fine-tuned on industrial objects show degraded performance on the general FSC-147 benchmark, suggesting that extensive fine-tuning may reduce the model's ability to count diverse object types. This trade-off must be considered in practice: for well-defined industrial applications with consistent object types, domain-specific training is advantageous; for applications requiring flexibility across many object types, pre-trained models with minimal fine-tuning may be preferable.
+However, we observe a clear trade-off between domain specialization and general adaptability. Models trained from scratch on industrial objects show degraded performance on the general FSC-147 benchmark, as they learn features specific to industrial object characteristics rather than general counting patterns. This trade-off must be considered in practice: for well-defined industrial applications with consistent object types, training from scratch on domain-specific data is advantageous; for applications requiring flexibility across many object types, general pre-trained models may be preferable.
 
 ### 5.2 Hybrid Post-Processing: Accuracy vs. Interpretability
 
-Our hybrid post-processing approach using geometric feature detection shows mixed quantitative results. While it improves pre-trained model performance, it degrades fine-tuned model accuracy. This suggests that fine-tuned models learn to produce density maps optimized for direct integration, whereas post-processing disrupts these learned patterns.
+Our hybrid post-processing approach using geometric feature detection shows mixed quantitative results. While it improves pre-trained model performance, it degrades the accuracy of models trained from scratch on industrial data. This suggests that domain-trained models learn to produce density maps optimized for direct integration, whereas post-processing disrupts these learned patterns.
 
 However, post-processing provides significant qualitative benefits. The visualizations with colored confidence-level dots greatly enhance interpretability, making it easier for human operators to understand and trust the model's predictions. This interpretability is crucial for HITL workflows, where human oversight depends on clear presentation of model outputs.
 
@@ -310,7 +310,7 @@ This paper proposes a comprehensive approach to industrial object counting using
 
 4. **Adaptive HITL workflow:** Our confidence-based selective verification system achieves superior accuracy-efficiency trade-offs compared to baseline approaches, providing a practical framework for deploying FSC in real-world industrial settings.
 
-Experimental results demonstrate that fine-tuned FamNet models achieve substantial accuracy improvements on industrial objects (MAE < 5), though with some reduction in general object counting ability. Our adaptive HITL workflow achieves superior accuracy compared to random sampling with lower human intervention rates (e.g., MAE 1.959 at 62% HIR vs. MAE 2.950 at 75% HIR for random sampling).
+Experimental results demonstrate that FamNet models trained from scratch on industrial datasets achieve substantial accuracy improvements on industrial objects (MAE < 5), though with some reduction in general object counting ability. Our adaptive HITL workflow achieves superior accuracy compared to random sampling with lower human intervention rates (e.g., MAE 1.959 at 62% HIR vs. MAE 2.950 at 75% HIR for random sampling).
 
 These findings highlight FSC's potential for industrial automation when deployed with appropriate human oversight. The framework provides operators with tunable parameters to balance accuracy and efficiency based on operational requirements, making it suitable for practical deployment in manufacturing, warehousing, and inventory management scenarios.
 
