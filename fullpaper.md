@@ -104,15 +104,23 @@ Both datasets were annotated using our PBAT tool, generating point annotations f
 
 A critical innovation in our approach is the integration of a confidence-based selective verification system. For each processed image, we compute a confidence score reflecting the model's certainty in its prediction. This score is derived from two primary indicators:
 
-**1. Density Map Local Variance:** We compute the local variance within regions surrounding each detected peak. High variance indicates ambiguous or noisy predictions, suggesting lower confidence. Conversely, low variance with clear, isolated peaks indicates high confidence.
+**1. Density Map Local Variance:** We compute the local variance within a neighborhood surrounding each detected peak in the density map. High variance indicates regions where the model produces inconsistent or noisy predictions, suggesting ambiguity in object localization. The variance score is computed as:
 
-**2. Exemplar Correlation Score:** We measure the correlation between the query image features and exemplar features in regions corresponding to detected objects. Higher correlation values indicate that detected objects closely match the exemplar characteristics, increasing confidence.
+$$C_{\text{variance}} = 1 - \frac{\sigma^2_{\text{local}}}{\sigma^2_{\text{max}}}$$
 
-The overall confidence score $C$ for an image is computed as a weighted combination:
+where $\sigma^2_{\text{local}}$ is the variance within peak neighborhoods and $\sigma^2_{\text{max}}$ is the maximum observed variance for normalization. This yields higher confidence values for density maps with clear, well-defined peaks and lower values for noisy or ambiguous regions.
+
+**2. Exemplar Correlation Score:** This metric quantifies how closely detected objects match the provided exemplars. We compute the correlation between query image features and exemplar features at locations corresponding to detected peaks. The correlation score is normalized to $[0, 1]$:
+
+$$C_{\text{correlation}} = \frac{1}{N}\sum_{i=1}^{N} \text{corr}(f_{\text{query}}^{(i)}, f_{\text{exemplar}})$$
+
+where $N$ is the number of detected peaks, $f_{\text{query}}^{(i)}$ represents features at peak location $i$, and $f_{\text{exemplar}}$ represents averaged exemplar features. Higher correlation indicates detected objects closely match exemplar characteristics, while lower correlation suggests potential false positives or novel object appearances.
+
+**Combined Confidence Score:** The overall confidence score combines both indicators:
 
 $$C = \alpha \cdot C_{\text{variance}} + \beta \cdot C_{\text{correlation}}$$
 
-where $C_{\text{variance}}$ is normalized inverse variance (higher for lower variance), $C_{\text{correlation}}$ is the normalized correlation score, and $\alpha$ and $\beta$ are weighting coefficients summing to 1.
+where $\alpha$ and $\beta$ are weighting coefficients summing to 1. This combination captures both spatial consistency (variance) and semantic similarity (correlation), providing a robust uncertainty estimate. In our experiments, we use $\alpha = 0.5$ and $\beta = 0.5$.
 
 Based on this confidence score, we implement an adaptive HITL workflow:
 
@@ -225,7 +233,7 @@ We designed and evaluated four distinct workflows to understand the accuracy-eff
 
 4. **Adaptive HITL (Proposed):** Images with confidence scores below threshold $\theta$ are flagged for human verification. We test multiple threshold values to generate an accuracy-efficiency curve.
 
-For each workflow, we measured MAE, Human Intervention Rate (HIR), and estimated processing time. Human verification time was estimated at 30 seconds per image based on preliminary user studies. The experiment was conducted on 81 test images from the INDT-409 dataset using the INDT-409-trained model.
+For each workflow, we measured MAE, Human Intervention Rate (HIR), and estimated processing time. Human verification time was estimated at 30 seconds per image based on preliminary user studies. For human-verified images, we assume an average human error of MAE = 2.0, reflecting realistic counting errors due to occlusions, ambiguous object boundaries, and complex stacking arrangements that cause even trained operators to occasionally miscount. The experiment was conducted on 81 test images from the INDT-409 dataset using the INDT-409-trained model.
 
 **Table 5: Workflow Comparison Results (INDT-409 Test Set, INDT-409-trained model)**
 

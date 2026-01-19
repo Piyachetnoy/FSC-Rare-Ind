@@ -20,7 +20,8 @@ df = pd.read_csv(csv_path)
 plt.style.use('seaborn-v0_8-whitegrid')
 plt.rcParams.update({
     'font.size': 12,
-    'font.family': 'serif',
+    'font.family': 'Yu Gothic',
+    'font.weight': 'bold',
     'axes.labelsize': 14,
     'axes.titlesize': 14,
     'legend.fontsize': 11,
@@ -48,9 +49,9 @@ ax.plot(ah_hir, ah_mae, 'r-s', linewidth=2, markersize=8, label='Adaptive HITL (
 
 # 始点・終点のポイントをマーク
 ax.scatter([0], [fully_automated['mae'].values[0]], 
-           c='black', s=120, marker='o', zorder=5)
+           c='black', s=64, marker='o', zorder=5)
 ax.scatter([100], [full_manual['mae'].values[0]], 
-           c='black', s=120, marker='o', zorder=5)
+           c='black', s=64, marker='o', zorder=5)
 
 # 始点・終点のラベル
 ax.annotate('Fully\nAutomated', 
@@ -75,15 +76,18 @@ for _, row in adaptive_hitl.iterrows():
                 fontsize=9, color='darkred', fontweight='bold')
 
 # 軸設定
-ax.set_xlabel('Human Intervention Rate (%)')
-ax.set_ylabel('Mean Absolute Error (MAE)')
-ax.set_title('Accuracy-Efficiency Trade-off: Adaptive HITL vs Random Sampling')
+ax.set_xlabel('Human Intervention Rate (%)', fontweight='bold')
+ax.set_ylabel('Mean Absolute Error (MAE)', fontweight='bold')
+ax.set_title('Accuracy-Efficiency Trade-off: Adaptive HITL vs Random Sampling', fontweight='bold')
+ax.tick_params(axis='both', which='major', labelsize=12)
+for label in ax.get_xticklabels() + ax.get_yticklabels():
+    label.set_fontweight('bold')
 ax.set_xlim(-5, 105)
 ax.set_ylim(0, max(rs_mae) * 1.15)
 
 # グリッドと凡例
 ax.grid(True, alpha=0.3)
-ax.legend(loc='upper right')
+ax.legend(loc='upper right', prop={'weight': 'bold'})
 
 # 領域のハイライト（薄く）
 common_hir = np.linspace(0, 100, 100)
