@@ -667,7 +667,7 @@ def main():
         model_path=args.model_path,
         data_path=args.data_path,
         annotation_file=args.anno_file,
-        image_dir=os.path.join(args.data_path, "INDT-409"),
+        image_dir=os.path.join(args.data_path, "INDT-576"),
         test_split="test",
         human_verification_time_sec=args.human_time,
         random_seed=args.seed,
