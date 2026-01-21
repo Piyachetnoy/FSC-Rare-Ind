@@ -639,7 +639,7 @@ def main():
                         help="Output directory for results")
     parser.add_argument("-g", "--gpu-id", type=int, default=0, 
                         help="GPU id. Use -1 for CPU.")
-    parser.add_argument("--dataset_name", type=str, default="INDT-409",
+    parser.add_argument("--dataset_name", type=str, default="INDT-576",
                         help="Dataset name for reporting")
     parser.add_argument("--seed", type=int, default=42,
                         help="Random seed for reproducibility")
