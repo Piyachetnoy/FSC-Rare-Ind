@@ -23,7 +23,7 @@ from utils import count_dots_with_adjusted_area
 
 
 parser = argparse.ArgumentParser(description="Few Shot Counting Evaluation code")
-parser.add_argument("-dp", "--data_path", type=str, default='./data-V2/', help="Path to the FSC147 dataset")
+parser.add_argument("-dp", "--data_path", type=str, default='./data-final/INDT-576/', help="Path to the INDT dataset")
 parser.add_argument("-ts", "--test_split", type=str, default='test', choices=["val_PartA","val_PartB","test_PartA","test_PartB","test", "val"], help="what data split to evaluate on")
 parser.add_argument("-m",  "--model_path", type=str, default="./data/pretrainedModels/FamNet_Save1.pth", help="path to trained model")
 parser.add_argument("-a",  "--adapt", action='store_true', help="If specified, perform test time adaptation")
@@ -39,9 +39,9 @@ args = parser.parse_args()
 # data_split_file = data_path + 'Train_Test_Val.json'
 # im_dir = data_path + 'indt-objects-V4'
 data_path = args.data_path
-anno_file = data_path + 'annotation_FSC147_384.json'
-data_split_file = data_path + 'Train_Test_Val_FSC_147.json'
-im_dir = data_path + 'images_384_VarV2'
+anno_file = data_path + '../annotations.json'
+data_split_file = data_path + '../Train_Test_Val.json'
+im_dir = data_path
 
 if not exists(anno_file) or not exists(im_dir):
     print("Make sure you set up the --data-path correctly.")
@@ -62,7 +62,7 @@ if use_gpu: resnet50_conv.cuda()
 resnet50_conv.eval()
 
 regressor = CountRegressor(6, pool='mean')
-regressor.load_state_dict(torch.load(args.model_path)
+regressor.load_state_dict(torch.load(args.model_path))
 if use_gpu: regressor.cuda()
 regressor.eval()
 
